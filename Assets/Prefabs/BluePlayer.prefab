@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114898783880286768}
   - component: {fileID: 58466615535057332}
   - component: {fileID: 50975153386270312}
+  - component: {fileID: 114481885637622660}
   m_Layer: 0
   m_Name: BluePlayer
   m_TagString: Untagged
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1575708473539362}
   m_LocalRotation: {x: -0, y: -0, z: 0.99997336, w: -0.0073007885}
-  m_LocalPosition: {x: 1.422299, y: 1.512713, z: 0}
+  m_LocalPosition: {x: 4.0061893, y: -3.5547867, z: 0}
   m_LocalScale: {x: 0.4328829, y: 0.43288282, z: 0.43288276}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,6 +96,19 @@ MonoBehaviour:
   Friction: 0
   RotateSprite: 1
   CurrentVelocity: {x: 0, y: 0}
+--- !u!114 &114481885637622660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575708473539362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddaee80b8b095874c81b894bf951077a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PassingForce: 5
+  MaxShootingForce: 5
 --- !u!114 &114775665353238352
 MonoBehaviour:
   m_ObjectHideFlags: 1

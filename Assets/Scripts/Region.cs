@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class SupportPosition
+{
+    public Vector2 Position;
+    public float Weighting;
+}
+
 public class Region : MonoBehaviour {
 
     /**
@@ -11,16 +18,12 @@ public class Region : MonoBehaviour {
     *   whether it is a worthwhile position moving to, to supoprt the controlling
     *   player
     */
-    private struct SupportPosition
-    {
-        public Vector2 Position;
-        public float Weighting;
-    }
+  
 
     /*
     * List Of support Positions in the Level     
     */
-    private List<SupportPosition> SupportPositions = new List<SupportPosition>();
+    public List<SupportPosition> SupportPositions = new List<SupportPosition>();
 
     /**
     *   Divisons 
@@ -28,8 +31,10 @@ public class Region : MonoBehaviour {
     *   Number of Divisions/Supporting Positions there will be on the pitch
     *   Cant Be less than zero
     */
-    public int WidthDivisions = 1;
-    public int HeightDivisions = 1;
+    [SerializeField]
+    private int WidthDivisions = 1;
+    [SerializeField]
+    private int HeightDivisions = 1;
 
     /**
     *   Default Weigthing
@@ -38,10 +43,15 @@ public class Region : MonoBehaviour {
     *   However It acts as a visual represntaiton as well for Debuging
     *   (The Radius of the debug circle) 
     */
-    public float DefaultWeighting = 0.1f;
+    [SerializeField]
+    private float DefaultWeighting = 0.1f;
+    [SerializeField]
+    private float SafePassScore = 0.1f;
+    [SerializeField]
+    private float ShootingChanceScore = 0.2f;
+
 
     private SpriteRenderer Rend;
-
 
     /**
     *   Bottom Left And Top Right Vectors of the pitch
@@ -55,8 +65,8 @@ public class Region : MonoBehaviour {
     public List<GameObject> RedTeamPlayers = new List<GameObject>();
     public List<GameObject> BlueTeamPlayers = new List<GameObject>();
 
-    Team RedTeam;
-    Team BlueTeam;
+    Team RedTeam = new Team();
+    Team BlueTeam = new Team();
 
 
 
@@ -91,8 +101,10 @@ public class Region : MonoBehaviour {
     void Update ()
     {
         counter++;
-
+        RedTeam.DetermineBestSupportingPosition();
     }
+
+  
 
     void SetUpSupportRegions()
     {
@@ -122,6 +134,22 @@ public class Region : MonoBehaviour {
         }
     }
 
+    /**
+     *  Getters and setters  
+     */
+    public float GetDefaultWeighting()
+    {
+        return DefaultWeighting;
+    }
+    public float GetSafePassScore()
+    {
+        return SafePassScore;
+    }
+    public float GetShootingChanceScore()
+    {
+        return ShootingChanceScore;
+    }
+
     void OnDrawGizmos()
     {
         //Draw the Support Possitions based on their current Weightings
@@ -131,4 +159,6 @@ public class Region : MonoBehaviour {
             Gizmos.DrawWireSphere(SP.Position, SP.Weighting);
         }    
     }
+
+    
 }

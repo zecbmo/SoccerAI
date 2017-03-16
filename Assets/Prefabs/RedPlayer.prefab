@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114308167844239716}
   - component: {fileID: 58245850923737032}
   - component: {fileID: 50036549706114048}
+  - component: {fileID: 114343346082059446}
   m_Layer: 0
   m_Name: RedPlayer
   m_TagString: Untagged
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341334283867638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.624553, y: -1.3503542, z: 0}
+  m_LocalPosition: {x: -0.4, y: 1.41, z: 0}
   m_LocalScale: {x: 0.43288285, y: 0.43288276, z: 0.43288276}
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,6 +109,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weight: 0.2
   TargetPoint: {x: 0, y: 0}
+--- !u!114 &114343346082059446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341334283867638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddaee80b8b095874c81b894bf951077a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PassingForce: 5
+  MaxShootingForce: 5
 --- !u!114 &114785197999822488
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114310099156226018}
   - component: {fileID: 50003546708842364}
   - component: {fileID: 58475354531425154}
+  - component: {fileID: 114164100195242048}
   m_Layer: 0
   m_Name: GoalKeeper
   m_TagString: Untagged
@@ -38,8 +39,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1978268195999318}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 6.86, y: -0.68, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.122133, y: -1.0156535, z: 0}
   m_LocalScale: {x: 0.43288285, y: 0.43288276, z: 0.43288276}
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,6 +80,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.00000011920929}
   serializedVersion: 2
   m_Radius: 0.62
+--- !u!114 &114164100195242048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1978268195999318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddaee80b8b095874c81b894bf951077a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PassingForce: 5
+  MaxShootingForce: 5
 --- !u!114 &114310099156226018
 MonoBehaviour:
   m_ObjectHideFlags: 1
