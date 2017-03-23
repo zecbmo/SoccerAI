@@ -68,7 +68,10 @@ public class Region : MonoBehaviour {
     Team RedTeam = new Team();
     Team BlueTeam = new Team();
 
-
+    /**
+    *   Bool monitoring whether the Game is play or not
+    */
+    private bool GameInPlay = false;
 
     public int counter = 0;
 
@@ -158,6 +161,11 @@ public class Region : MonoBehaviour {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(SP.Position, SP.Weighting);
         }    
+    }
+
+    public void SetGameInPlay(bool InPlayOrNot)
+    {
+        GameInPlay = InPlayOrNot;
     }
 
     

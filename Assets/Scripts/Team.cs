@@ -153,4 +153,43 @@ public class Team
     {
         //TODO    
     }
+
+    public Region GetPitch()
+    {
+        return PitchRef;
+    }
+
+    public void UpdateTargetsOfWaitingPlayers()
+    {
+        //TODO   
+    }
+
+    public void SetHomeRegions(HomeRegions RegionEnum)
+    {
+        switch (RegionEnum)
+        {
+            case HomeRegions.Attacking:
+
+                    //TODO
+
+                break;
+
+            case HomeRegions.Defending:
+
+                    //TODO
+
+                break;
+
+        }
+    }
+
+    public bool InControl()
+    {
+        if (ControllingPlayer)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
