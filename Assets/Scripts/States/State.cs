@@ -1,9 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 public abstract class State : MonoBehaviour
 {
+
+    //static CHANGENAME instance;
+
+    //public static CHANGENAME Instance()
+    //{
+    //    if (instance == null)
+    //    {
+    //        instance = new CHANGENAME();
+    //    }
+    //    return instance;
+    //}
+
     /**
     *   this will execute when the state is entered
     */
@@ -18,5 +31,11 @@ public abstract class State : MonoBehaviour
     *   this will execute when the state is exited
     */
     public abstract void Exit(GameObject CallingObject);
+
+    public virtual bool OnMessage(GameObject CallingObject, Message Msg)
+    {
+
+        return false;
+    }
 
 }

@@ -73,7 +73,7 @@ public class Defending : State
 
 public class PrepareForKickoff : State
 {
-
+   
     static PrepareForKickoff instance;
 
     public static PrepareForKickoff Instance()
