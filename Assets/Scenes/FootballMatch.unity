@@ -160,6 +160,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d,
     type: 2}
   m_PrefabInternal: {fileID: 902167794}
+--- !u!114 &149982529 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114308167844239716, guid: e59f1724c6238e64eb4f4991c08fee6d,
+    type: 2}
+  m_PrefabInternal: {fileID: 902167794}
+  m_Script: {fileID: 11500000, guid: e4bdfd04e541a594fb04cf9957d61cf7, type: 3}
 --- !u!1 &326455300 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1978268195999318, guid: 1208dc1eb5fa75943ab23e411d55daf6,
@@ -363,7 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11d7e986b89c244d91bf42cccfdfbd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AgentSeek: []
+  AgentSeek:
+  - {fileID: 902490350}
+  - {fileID: 149982529}
   AgentArrive: []
 --- !u!50 &735231355
 Rigidbody2D:
@@ -391,7 +399,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 735231353}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -530,6 +538,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.43287998
       objectReference: {fileID: 0}
+    - target: {fileID: 114785197999822488, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
@@ -538,6 +551,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1575708473539362, guid: 799eafbdc60a88148b0df9b9866f747c,
     type: 2}
   m_PrefabInternal: {fileID: 497272361}
+--- !u!114 &902490350 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114898783880286768, guid: 799eafbdc60a88148b0df9b9866f747c,
+    type: 2}
+  m_PrefabInternal: {fileID: 497272361}
+  m_Script: {fileID: 11500000, guid: e4bdfd04e541a594fb04cf9957d61cf7, type: 3}
 --- !u!1 &957974101 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1575708473539362, guid: 799eafbdc60a88148b0df9b9866f747c,
