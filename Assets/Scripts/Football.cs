@@ -36,7 +36,7 @@ public class Football : MonoBehaviour {
                 Arrive.TargetPoint = transform.position;
             }
         }
-
-
     }
+
+  
 }

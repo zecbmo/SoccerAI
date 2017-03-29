@@ -10,13 +10,20 @@ namespace Steer2D
         public float StopRadius = 0.2f;
         public bool DrawGizmos = false;
 
+        public bool AtTarget = false;
+
         public override Vector2 GetVelocity()
         {
             float distance = Vector3.Distance(transform.position, (Vector3)TargetPoint);
             Vector2 desiredVelocity = (TargetPoint - (Vector2)transform.position).normalized;
 
+            AtTarget = false;
+
             if (distance < StopRadius)
+            {
                 desiredVelocity = Vector2.zero;
+                AtTarget = true;
+            }
             else if (distance < SlowRadius)
                 desiredVelocity = desiredVelocity * agent.MaxVelocity * ((distance - StopRadius) / (SlowRadius - StopRadius));
             else

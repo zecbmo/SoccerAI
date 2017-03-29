@@ -168,5 +168,17 @@ public class Region : MonoBehaviour {
         GameInPlay = InPlayOrNot;
     }
 
-    
+    public bool GetGameInPlay()
+    {
+        return GameInPlay;
+    }
+
+
+    public bool GoalKeeperHasBall()
+    {
+        //TODO
+        return true;
+    }
+
+
 }

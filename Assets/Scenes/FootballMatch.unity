@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.43288282
       objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
@@ -321,6 +326,11 @@ Prefab:
       propertyPath: Weight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
@@ -476,8 +486,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddaee80b8b095874c81b894bf951077a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HomePosition: {x: 0, y: 0}
   PassingForce: 5
   MaxShootingForce: 5
+  DribbleForce: 1
+  TurningForce: 0.5
+  ShootingConfidence: 0.8
+  ShootingAccuracy: 0.8
+  PreferedTurnDir: 1
+  Ball: {fileID: 0}
+  OpponentsGoal: {fileID: 0}
 --- !u!4 &884905732 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4601631971351572, guid: 1208dc1eb5fa75943ab23e411d55daf6,
@@ -543,6 +561,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
@@ -557,6 +580,17 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 497272361}
   m_Script: {fileID: 11500000, guid: e4bdfd04e541a594fb04cf9957d61cf7, type: 3}
+--- !u!114 &902490354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 902490346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a57a9548eecd5c47bbbc062f428428c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &957974101 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1575708473539362, guid: 799eafbdc60a88148b0df9b9866f747c,
@@ -604,6 +638,11 @@ Prefab:
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.2780001
+      objectReference: {fileID: 0}
+    - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
@@ -655,6 +694,11 @@ Prefab:
     - target: {fileID: 1978268195999318, guid: 1208dc1eb5fa75943ab23e411d55daf6, type: 2}
       propertyPath: m_Name
       value: 'BlueGoalKeeper '
+      objectReference: {fileID: 0}
+    - target: {fileID: 114905800674639072, guid: 1208dc1eb5fa75943ab23e411d55daf6,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1208dc1eb5fa75943ab23e411d55daf6, type: 2}
@@ -714,6 +758,11 @@ Prefab:
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalScale.y
       value: 0.43288282
+      objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
@@ -783,6 +832,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.43287998
       objectReference: {fileID: 0}
+    - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
@@ -839,6 +893,11 @@ Prefab:
       propertyPath: m_Name
       value: BluePlayer (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
@@ -892,6 +951,11 @@ Prefab:
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalScale.y
       value: 0.43288282
+      objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
@@ -1111,6 +1175,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.43287998
       objectReference: {fileID: 0}
+    - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
@@ -1148,11 +1217,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4601631971351572, guid: 1208dc1eb5fa75943ab23e411d55daf6, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.2826103
       objectReference: {fileID: 0}
     - target: {fileID: 4601631971351572, guid: 1208dc1eb5fa75943ab23e411d55daf6, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9592349
       objectReference: {fileID: 0}
     - target: {fileID: 4601631971351572, guid: 1208dc1eb5fa75943ab23e411d55daf6, type: 2}
       propertyPath: m_RootOrder
@@ -1161,6 +1230,15 @@ Prefab:
     - target: {fileID: 1978268195999318, guid: 1208dc1eb5fa75943ab23e411d55daf6, type: 2}
       propertyPath: m_Name
       value: RedGoalKeeper
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601631971351572, guid: 1208dc1eb5fa75943ab23e411d55daf6, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 327.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 114905800674639072, guid: 1208dc1eb5fa75943ab23e411d55daf6,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1208dc1eb5fa75943ab23e411d55daf6, type: 2}
@@ -1217,6 +1295,11 @@ Prefab:
     - target: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_Name
       value: RedOutFieldPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}

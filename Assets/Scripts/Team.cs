@@ -76,13 +76,23 @@ public class Team
         return true;
     }
 
-    public bool CanShoot(Vector2 ShootingPosition, float ShootingForce)
+    public bool FindPass(Vector2 From, Player Reciever, float PassingForce)
+    {
+        //TODO
+        return true;
+    }
+
+    public bool CanShoot(Vector2 ShootingPosition, float ShootingForce, float Confidence = 1.0f)
     {
         //TODO
 
         return true;
     }
 
+    public Vector2 GetSupportSpot()
+    {
+        return BestSupportingSpot.Position;
+    }
 
     public Vector2 DetermineBestSupportingPosition()
     {
@@ -191,5 +201,11 @@ public class Team
         }
 
         return false;
+    }
+
+    public void RequestPass(GameObject RequestingPlayer)
+    {
+        //TODO
+
     }
 }
