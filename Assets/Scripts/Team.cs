@@ -2,36 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Team
+public class Team : MonoBehaviour
 {
+
+    /**
+    *   The Current team State
+    */
+    State CurrentState;
+    State PreviousState;
+    State GlobalState;//  = null;
+
 
     /**
     *   A list Holding all players
     */
-    private List<Player> Players;
+    [HideInInspector]
+    public List<Player> Players;
 
     /**
     *   References to Key players
     */
-    public Player ControllingPlayer = null;
-    public Player ClosetPlayerToBall = null; 
-    public Player RecievingPlayer = null; 
-    public Player SupportingPlayer = null; 
+    public Player ControllingPlayer;// = null;
+    public Player ClosetPlayerToBall;//  = null; 
+    public Player RecievingPlayer;//  = null; 
+    public Player SupportingPlayer;//  = null;
 
     /**
     *   Reference to the pitch
     */
-    Region PitchRef = null;
+    Region PitchRef;// = null;
 
     /**
     *  Refecence to the opposition
     */
-    public Team Opponents = null;
+    public Team Opponents;// = null;
+
+    public GameObject GoalObject;
+    public int NoAttemptsToFindGoodShotAtGoal = 5;
+    public float ShootingOffsetForFindingGoodShot = 0.5f;
+
+    public int ChancePlayersWontListenToPassRequest = 5;
+    /**
+    *  Refecence to the football
+    */
+    public GameObject Ball;
 
     /**
     *  Ref to the best supporting spot for the players 
     */
-    SupportPosition BestSupportingSpot = null;
+    SupportPosition BestSupportingSpot;// = null;
 
     public void Init(Region Pitch, List<GameObject> NewPlayers)
     {
@@ -39,6 +58,10 @@ public class Team
 
         PitchRef = Pitch;
         SetUpPlayers(NewPlayers);
+
+        CurrentState = Defending.Instance();
+        PreviousState = Defending.Instance();
+
     }
 
     /**
@@ -56,37 +79,169 @@ public class Team
 
     void Update()
     {
-       
+       CalculateClosetPlayerToTheBall();
+       CurrentState.Excute(gameObject); 
     }
     public void DebugThis()
     {
         Debug.Log(PitchRef.counter);
     }
 
-    public bool IsPassSafeFromAllOpponents(Vector2 From, Vector2 Target, Player Reciever, float PassingForce)
+    public Player DetermineBestSupportingAttacker()
     {
-        //TODO
+        float ShortestDistanceSoFar = 100000f;
+
+        Player ClosestPlayer = null;
+
+        foreach (Player Guy in Players)
+        {
+            if (Guy.GetRole() == PlayerRoles.Attacker && Guy != ControllingPlayer)
+            {
+                float Dist = Vector3.Distance(BestSupportingSpot.Position, Guy.gameObject.transform.position);
+
+                if ( Dist < ShortestDistanceSoFar)
+                {
+                    ClosestPlayer = Guy;
+                    ShortestDistanceSoFar = Dist;
+                }
+            }
+        }
+
+        if (!ClosestPlayer)
+        { 
+            print("ERROR!! Closest Player Not Found.... This function is broke");
+        }
+
+        return ClosestPlayer;
+    }
+
+    public bool IsPassSafeFromAllOpponents(Vector2 From, Vector2 Target, GameObject Reciever, float PassingForce)
+    {
+        foreach (Player Opp in Opponents.Players)
+        {
+            if (!IsPassSafeFromOpponent(From, Target, Reciever, Opp, PassingForce))
+            {
+                return false;
+            }
+        }
+        
         return true;
     }
 
-    public bool IsPassSafeFromOpponent(Vector2 From, Vector2 Target, Player Reciever, Player Opponent, float PassingForce)
+    public bool IsPassSafeFromOpponent(Vector2 From, Vector2 Target, GameObject Reciever, Player Opponent, float PassingForce)
     {
-        //TODO
+        //TODO ***make sure this works!***
+        Vector2 ToTarget = (Target - From).normalized;
+
+
+        float dot = Vector3.Dot(ToTarget, (Opponent.gameObject.transform.position - Reciever.gameObject.transform.position).normalized);
+
+        if (dot > 0.8f) //opponent between player and reciever
+        {
+            return false;
+        }
+        else if (dot < 0) //Behind players
+        {
+            return true;
+        }
+        
+        float RecievcerDistToTarget = Vector3.Distance(Target, Reciever.gameObject.transform.position);
+        float OpponentDistToTarget = Vector3.Distance(Target, Opponent.gameObject.transform.position);
+
+        if (RecievcerDistToTarget < OpponentDistToTarget)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool FindPass(Player From, out Player Reciever, out Vector3 PassTarget, float PassingForce)
+    {
+        float ClosestToGoalSoFar = 1000000f;
+
+        Reciever = null;
+
+        Vector3 Target = new Vector3();
+        PassTarget = Target;
+
+        foreach (Player Guy in Players)
+        {
+            float PassingDistance = Vector3.Distance(From.gameObject.transform.position, Guy.gameObject.transform.position);
+
+            if (Guy != From && (PassingDistance > Guy.MinPassDistance))
+            {
+                //TODO fixme
+                // if (GetBestPassToReciever(From, Guy, out Target, PassingForce))
+                //{
+                float DistToGoal = Vector3.Distance(Opponents.GoalObject.transform.position, Target);
+
+                if(DistToGoal < ClosestToGoalSoFar)
+                {
+                    Reciever = Guy;
+                    ClosestToGoalSoFar = DistToGoal;
+                    PassTarget = Reciever.transform.position;
+                }
+
+                //}                
+            }
+        }
+
+        if (Reciever)
+        {
+            return true;
+        }
+
+        print("No Pass Found");
+        return false;
+    }
+
+    public bool GetBestPassToReciever(Player From, Player Reciever, out Vector3 PassTarget, float PassingForce)
+    {
+        Vector3 Target = new Vector3();
+        PassTarget = Target;
+
+        //TODO fixme
+
+        //float PassTime = Ball.GetComponent<Football>().CalculateTimeToCoverDistance(Reciever.gameObject.transform.position, PassingForce);
+
+        //if (PassTime < 0)
+        //{
+        //    return false;
+        //}
+
+        //float InterceptRange = PassTime * Reciever.GetMaxSpeed();
 
         return true;
     }
 
-    public bool FindPass(Vector2 From, Player Reciever, float PassingForce)
+    public bool CanShoot(Vector2 ShootingPosition, out Vector2 Target, float ShootingForce, float Confidence = 1.0f)
     {
-        //TODO
-        return true;
-    }
+        Vector2 BestTarget = new Vector2();
+        Target = BestTarget;
 
-    public bool CanShoot(Vector2 ShootingPosition, float ShootingForce, float Confidence = 1.0f)
-    {
-        //TODO
+        int NumAttempts = NoAttemptsToFindGoodShotAtGoal;
 
-        return true;
+        while (NumAttempts > 0)
+        {
+            Vector2 Shot = Opponents.GoalObject.transform.position;
+            Shot += Random.insideUnitCircle * (1.0f - ShootingOffsetForFindingGoodShot);
+
+            float ShotTime = Ball.GetComponent<Football>().CalculateTimeToCoverDistance(Shot, ShootingForce);
+
+            if (ShotTime >= 0)
+            {
+                if (IsPassSafeFromAllOpponents(ShootingPosition, Shot, Opponents.GoalObject, ShootingForce))
+                {
+                    return true;
+                }
+            }
+
+            NumAttempts--;
+        }
+
+
+        return false;
     }
 
     public Vector2 GetSupportSpot()
@@ -108,13 +263,14 @@ public class Team
             SP.Weighting = PitchRef.GetDefaultWeighting();
 
             //Calculate the Passing Score to position
-            if (IsPassSafeFromAllOpponents(ControllingPlayer.transform.position, SP.Position, null, ControllingPlayer.PassingForce))
+            if (IsPassSafeFromAllOpponents(ControllingPlayer.transform.position, SP.Position, SP.obj, ControllingPlayer.PassingForce))
             {
                 SP.Weighting += PitchRef.GetSafePassScore();
             }
 
             //Determine if a goal can be scored from the posiiton
-            if (CanShoot(SP.Position, ControllingPlayer.MaxShootingForce))
+            Vector2 Outtarget = new Vector2();
+            if (CanShoot(SP.Position, out Outtarget, ControllingPlayer.MaxShootingForce))
             {
                 SP.Weighting += PitchRef.GetShootingChanceScore();
             }
@@ -150,18 +306,39 @@ public class Team
 
     public void ReturnAllFieldPlayersToHome()
     {
-        //TODO
+        foreach (Player Guy in Players)
+        {
+            if (Guy.GetRole() != PlayerRoles.GoalKeeper)
+            {
+                Dispatcher.Instance().DispatchMessage(0, gameObject, Guy.gameObject, PlayerMessages.GoHome);
+            }
+        }
     }
-
     public bool AllPlayersAtHome()
     {
-        //TODO
+
+        foreach (Player Guy in Players)
+        {
+            if (!Guy.InHomePosition())
+            {
+                return false;
+            }
+        }
+
         return true;
     }
 
     public void ChangeState(GameObject CallingObject, State NewState)
     {
-        //TODO    
+      
+        PreviousState = CurrentState;
+
+        CurrentState.Exit(gameObject);
+
+        CurrentState = NewState;
+
+        CurrentState.Enter(gameObject);
+         
     }
 
     public Region GetPitch()
@@ -171,7 +348,17 @@ public class Team
 
     public void UpdateTargetsOfWaitingPlayers()
     {
-        //TODO   
+        foreach (Player Guy in Players)
+        {
+            if (Guy.GetRole() != PlayerRoles.GoalKeeper)
+            {
+                if (Guy.IsInState(Wait.Instance()) || Guy.IsInState(ReturnToHomeRegion.Instance()))
+                {
+                    Steer2D.Arrive Arr = (Steer2D.Arrive)Guy.GetSteeringController().GetBehaviourByTypeName("Steer2D.Arrive");
+                    Arr.TargetPoint = Guy.HomePosition;     
+                }
+            }
+        }
     }
 
     public void SetHomeRegions(HomeRegions RegionEnum)
@@ -179,15 +366,20 @@ public class Team
         switch (RegionEnum)
         {
             case HomeRegions.Attacking:
+                foreach (Player Guy in Players)
+                {
+                    Guy.HomePosition = Guy.AttackingPosition;
 
-                    //TODO
-
+                }
                 break;
 
             case HomeRegions.Defending:
 
-                    //TODO
+                foreach (Player Guy in Players)
+                {
+                    Guy.HomePosition = Guy.DefendingPosition;
 
+                }
                 break;
 
         }
@@ -205,7 +397,49 @@ public class Team
 
     public void RequestPass(GameObject RequestingPlayer)
     {
-        //TODO
+        int ListenConstant = 3;
+        int Rand = Random.Range(0, ChancePlayersWontListenToPassRequest + ListenConstant);
+
+        if (Rand < 5)
+        {
+            return;
+        }
+
+        if(IsPassSafeFromAllOpponents(ControllingPlayer.gameObject.transform.position, RequestingPlayer.transform.position, RequestingPlayer, ControllingPlayer.PassingForce))
+        {
+            Dispatcher.Instance().DispatchMessage(0, RequestingPlayer, ControllingPlayer.gameObject, PlayerMessages.PassToMe);
+        }
+
+    }
+
+    void CalculateClosetPlayerToTheBall()
+    {
+        float ShortestDistanceSoFar = 100000f;
+
+        Player ClosestPlayer = null;
+
+        foreach (Player Guy in Players)
+        {
+            Guy.SetClosestTeamMemberToBall(false);
+
+            float Dist = Vector3.Distance(Ball.transform.position, Guy.gameObject.transform.position);
+
+            if ( Dist < ShortestDistanceSoFar)
+            {
+                ClosestPlayer = Guy;
+                ShortestDistanceSoFar = Dist;
+
+            }
+        }
+
+        if (ClosestPlayer)
+        {
+            ClosestPlayer.SetClosestTeamMemberToBall(true);
+        }
+        else
+        {
+            print("ERROR!! Closest Player Not Found.... This function is broke");
+        }
 
     }
 }

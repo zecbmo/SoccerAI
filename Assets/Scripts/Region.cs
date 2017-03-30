@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SupportPosition
+public class SupportPosition 
 {
     public Vector2 Position;
     public float Weighting;
+    public GameObject obj;
 }
 
 public class Region : MonoBehaviour {
@@ -65,8 +66,8 @@ public class Region : MonoBehaviour {
     public List<GameObject> RedTeamPlayers = new List<GameObject>();
     public List<GameObject> BlueTeamPlayers = new List<GameObject>();
 
-    Team RedTeam = new Team();
-    Team BlueTeam = new Team();
+    public Team RedTeam;  //AddComponent<Team>();
+    public Team BlueTeam; //new Team();
 
     /**
     *   Bool monitoring whether the Game is play or not
@@ -78,6 +79,10 @@ public class Region : MonoBehaviour {
 
     void Start ()
     {
+        //RedTeam = gameObject.AddComponent<Team>();
+       // BlueTeam = gameObject.AddComponent<Team>();
+
+
         //Get up the Dimensions of the Pitch
         Rend = GetComponent<SpriteRenderer>();
         BottomLeftVec = Rend.bounds.min;
@@ -130,6 +135,9 @@ public class Region : MonoBehaviour {
                 SupportPosition NewPosition = new SupportPosition();
                 NewPosition.Position = CurrentPos;
                 NewPosition.Weighting = DefaultWeighting;
+                NewPosition.obj = new GameObject();
+                NewPosition.obj.transform.position = CurrentPos;
+
 
                 //Add to the support posiiton list
                 SupportPositions.Add(NewPosition);
@@ -158,7 +166,7 @@ public class Region : MonoBehaviour {
         //Draw the Support Possitions based on their current Weightings
         foreach (SupportPosition SP in SupportPositions)
         {
-            Gizmos.color = Color.blue;
+            Gizmos.color = Color.white;
             Gizmos.DrawWireSphere(SP.Position, SP.Weighting);
         }    
     }

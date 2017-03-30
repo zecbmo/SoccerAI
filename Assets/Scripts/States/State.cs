@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-public abstract class State : MonoBehaviour
+public abstract class State// : MonoBehaviour
 {
 
     //static CHANGENAME instance;

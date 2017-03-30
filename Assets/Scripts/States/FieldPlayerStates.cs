@@ -103,7 +103,7 @@ public class GlobalPlayerState : State
                     float KickPower = PlayerScript.PassingForce * dot;
 
                     //Add force to the ball
-                    PlayerScript.Ball.GetComponent<Rigidbody2D>().AddForce(KickDir * KickPower, ForceMode2D.Impulse);
+                    PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower);
 
 
 
@@ -240,12 +240,12 @@ public class Dribble : State
         if (dot > 0.7f) //Facing the goal
         {
             //Dribble towards goal
-            PlayerScript.Ball.GetComponent<Rigidbody2D>().AddForce(CallingObject.transform.right * PlayerScript.DribbleForce, ForceMode2D.Impulse);
+            PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.right * PlayerScript.DribbleForce);
         }
         else
         {
             //Kick to your prefered turn dir
-            PlayerScript.Ball.GetComponent<Rigidbody2D>().AddForce(CallingObject.transform.up * PlayerScript.TurningForce * PlayerScript.PreferedTurnDir, ForceMode2D.Impulse);
+            PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.up * PlayerScript.TurningForce * PlayerScript.PreferedTurnDir);
         }
 
         PlayerScript.ChangeState(CallingObject, ChaseBall.Instance());
@@ -434,10 +434,12 @@ public class KickBall : State
         }
 
         //If he can shoot
-        if (PlayerScript.GetTeam().CanShoot(CallingObject.transform.position, PlayerScript.MaxShootingForce, PlayerScript.ShootingConfidence))
+        Vector2 ShootingTarget = new Vector2();
+
+        if (PlayerScript.GetTeam().CanShoot(CallingObject.transform.position, out ShootingTarget, PlayerScript.MaxShootingForce, PlayerScript.ShootingConfidence))
         {
             //Get the Target the player is aiming at
-            Vector2 ShotTarget = PlayerScript.AddNoiseToTarget(PlayerScript.OpponentsGoal.transform.position);
+            Vector2 ShotTarget = PlayerScript.AddNoiseToTarget(ShootingTarget);
 
             //Get the direction of the shot
             Vector2 KickDir = (ShotTarget - (Vector2)PlayerScript.Ball.transform.position).normalized;
@@ -446,7 +448,7 @@ public class KickBall : State
             KickPower = PlayerScript.MaxShootingForce * dot;
 
             //Add force to the ball
-            PlayerScript.Ball.GetComponent<Rigidbody2D>().AddForce(KickDir * KickPower, ForceMode2D.Impulse);
+            PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower);
 
 
             PlayerScript.ChangeState(CallingObject, Wait.Instance());
@@ -458,17 +460,19 @@ public class KickBall : State
 
         KickPower = PlayerScript.PassingForce * dot;
 
-        FieldPlayer Reciever = null;
+        Player Reciever = null;
+        Vector3 PassingTarget = new Vector3();
+
         //Attempt to pass to player
-        if (PlayerScript.IsThreatened() && PlayerScript.GetTeam().FindPass(CallingObject.transform.position, Reciever, KickPower))
+        if (PlayerScript.IsThreatened() && PlayerScript.GetTeam().FindPass(PlayerScript, out Reciever, out PassingTarget, KickPower))
         {
-            Vector2 PassTarget = PlayerScript.AddNoiseToTarget(Reciever.gameObject.transform.position);
+            Vector2 PassTarget = PlayerScript.AddNoiseToTarget(PassingTarget); //TODO **** Make sure this works! *****
 
             //Get the direction of the shot
             Vector2 KickDir = (PassTarget - (Vector2)PlayerScript.Ball.transform.position).normalized;
 
             //Add force to the ball
-            PlayerScript.Ball.GetComponent<Rigidbody2D>().AddForce(KickDir * KickPower, ForceMode2D.Impulse);
+            PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower);
 
             GCHandle Handle = GCHandle.Alloc(PassTarget);
             System.IntPtr PositionPtr = (System.IntPtr)Handle;
@@ -638,7 +642,8 @@ public class SupportAttacker : State
             
         }
 
-        if (PlayerScript.GetTeam().CanShoot(CallingObject.transform.position, PlayerScript.MaxShootingForce))
+        Vector2 ShootingTarget = new Vector2();
+        if (PlayerScript.GetTeam().CanShoot(CallingObject.transform.position, out ShootingTarget, PlayerScript.MaxShootingForce)) //TODO ?Need Confidence here?
         {
             PlayerScript.GetTeam().RequestPass(CallingObject);
         }

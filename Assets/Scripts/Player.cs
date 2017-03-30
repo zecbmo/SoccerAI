@@ -2,17 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum PlayerRoles { Attacker, Defender, GoalKeeper} 
+
 public class Player : MonoBehaviour
 {
 
+    public PlayerRoles Role = PlayerRoles.Attacker;
+
     //The Base Position for the player
+    [HideInInspector]
     public Vector2 HomePosition;
+    [HideInInspector]
+    public Vector2 AttackingPosition;
+    [HideInInspector]
+    public Vector2 DefendingPosition;
+
+    public GameObject AttackPoint;
 
     //Player Constants
     public float PassingForce = 5.0f;
     public float MaxShootingForce = 5.0f;
     public float DribbleForce = 1.0f;
     public float TurningForce = 0.5f;
+    public float MinPassDistance = 1.0f;
+
 
     public float ShootingConfidence = 0.8f;
     public float ShootingAccuracy = 0.8f;
@@ -29,6 +43,8 @@ public class Player : MonoBehaviour
     public GameObject Ball;
     public GameObject OpponentsGoal;
     SteeringController SteerController;
+
+    bool ClosestPlayer = false;
 
     public Team GetTeam()
     {
@@ -49,12 +65,15 @@ public class Player : MonoBehaviour
         }
 
         SteerController = GetComponent<SteeringController>();
-        
+
+        HomePosition = transform.position;
+        DefendingPosition = transform.position;
+        AttackingPosition = AttackPoint.transform.position;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -85,18 +104,30 @@ public class Player : MonoBehaviour
 
     public bool IsClosestTeamMemberToBall()
     {
-        //TODO
-        return true;
+       return ClosestPlayer;
     }
 
     public void ChangeState(GameObject CallingObject, State NewState)
     {
-        //TODO    
+        PreviousState = CurrentState;
+
+        CurrentState.Exit(gameObject);
+
+        CurrentState = NewState;
+
+        CurrentState.Enter(gameObject);
     }
 
     public bool HandleMessage(Message Telegram)
     {
-        //TODO
+        if (GlobalState != null)
+        {
+            if (GlobalState.OnMessage(gameObject, Telegram))
+            {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -147,6 +178,27 @@ public class Player : MonoBehaviour
     }
 
     public bool IsThreatened()
+    {
+        //TODO
+        return true;
+    }
+
+    public void SetClosestTeamMemberToBall(bool IsClosest)
+    {
+        ClosestPlayer = IsClosest;
+    }
+
+    public PlayerRoles GetRole()
+    {
+        return Role;
+    }
+
+    public float GetMaxSpeed()
+    {
+        return gameObject.GetComponent<Steer2D.SteeringAgent>().MaxVelocity;
+    }
+
+    public bool InHomePosition()
     {
         //TODO
         return true;

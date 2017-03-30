@@ -68,7 +68,7 @@ public class Dispatcher : MonoBehaviour
         }
     }
 
-    public void DispatchMessage(float Delay, GameObject Sender, GameObject Reciever, PlayerMessages MessageToSend, System.IntPtr ExtraInfo )
+    public void DispatchMessage(float Delay, GameObject Sender, GameObject Reciever, PlayerMessages MessageToSend, System.IntPtr ExtraInfo = new System.IntPtr())
     {
         if (Reciever == null)
         {
