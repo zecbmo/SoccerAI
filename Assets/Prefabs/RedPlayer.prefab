@@ -26,7 +26,8 @@ GameObject:
   - component: {fileID: 114530992213060576}
   - component: {fileID: 58245850923737032}
   - component: {fileID: 50036549706114048}
-  - component: {fileID: 114343346082059446}
+  - component: {fileID: 114177506011334576}
+  - component: {fileID: 114463876889725274}
   m_Layer: 0
   m_Name: RedPlayer
   m_TagString: Untagged
@@ -57,8 +58,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341334283867638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.624553, y: -1.3503542, z: 0}
-  m_LocalScale: {x: 0.43288285, y: 0.43288276, z: 0.43288276}
+  m_LocalPosition: {x: -3.89, y: -3.72, z: 0}
+  m_LocalScale: {x: 0.43287998, y: 0.43287998, z: 0.43287998}
   m_Children:
   - {fileID: 4858416274137978}
   m_Father: {fileID: 0}
@@ -152,6 +153,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weight: 0.2
   TargetAgent: {fileID: 0}
+--- !u!114 &114177506011334576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341334283867638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a57a9548eecd5c47bbbc062f428428c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114308167844239716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weight: 0.2
   TargetPoint: {x: 0, y: 0}
---- !u!114 &114343346082059446
+--- !u!114 &114463876889725274
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -173,7 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341334283867638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddaee80b8b095874c81b894bf951077a, type: 3}
+  m_Script: {fileID: 11500000, guid: 660ad02438428fe45af9889b1e42b3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Role: 0
@@ -204,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weight: 0.2
   TargetPoint: {x: 0, y: 0}
-  SlowRadius: 1
+  SlowRadius: 0.5
   StopRadius: 0.2
   DrawGizmos: 0
   AtTarget: 0

@@ -9,7 +9,7 @@ public class SteeringController : MonoBehaviour
     List<Steer2D.SteeringBehaviour> Behaviours = new List<Steer2D.SteeringBehaviour>();
 
 
-    void Start()
+    void Awake()
     {
         Behaviours = GetComponents<Steer2D.SteeringBehaviour>().ToList();
 
@@ -184,6 +184,8 @@ public class SteeringController : MonoBehaviour
             {
                 return B;
             }
+
+            int testser = 0;
         }
 
         print(Name + ": Behaviour not found when turning on/off");

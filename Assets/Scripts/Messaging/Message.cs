@@ -15,7 +15,7 @@ public enum PlayerMessages
 
 
 
-public class Message : MonoBehaviour
+public class Message 
 {
     public void BuildMessage(float TimeDelay, GameObject SenderObj, GameObject RecieverObj, PlayerMessages MessageToSend, System.IntPtr AnyExtraInfo = new System.IntPtr() )
     {

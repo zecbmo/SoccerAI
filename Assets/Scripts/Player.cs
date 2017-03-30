@@ -50,14 +50,17 @@ public class Player : MonoBehaviour
     {
         return PlayersTeam;
     }
-
+    public void SetTeam(Team team)
+    {
+        PlayersTeam = team;
+    }
     public SteeringController GetSteeringController()
     {
         return SteerController;
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         if (Random.Range(0, 1) == 0) //randomise the turn Direction
         {
@@ -70,11 +73,16 @@ public class Player : MonoBehaviour
         DefendingPosition = transform.position;
         AttackingPosition = AttackPoint.transform.position;
 
-    }
+        CurrentState = ReturnToHomeRegion.Instance();
+        PreviousState = ReturnToHomeRegion.Instance();
+        GlobalState = GlobalPlayerState.Instance();
 
+        CurrentState.Enter(gameObject);
+    }
     // Update is called once per frame
-    void Update () {
-		
+    void Update ()
+    {
+        CurrentState.Excute(gameObject);
 	}
 
     public void FindSupport()

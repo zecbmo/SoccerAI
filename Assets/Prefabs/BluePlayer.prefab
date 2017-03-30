@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 114529524916327842}
   - component: {fileID: 58466615535057332}
   - component: {fileID: 50975153386270312}
-  - component: {fileID: 114481885637622660}
   - component: {fileID: 114176520321424074}
+  - component: {fileID: 114832135354352176}
   m_Layer: 0
   m_Name: BluePlayer
   m_TagString: Untagged
@@ -139,32 +139,6 @@ MonoBehaviour:
   Friction: 0
   RotateSprite: 1
   CurrentVelocity: {x: 0, y: 0}
---- !u!114 &114481885637622660
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1575708473539362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddaee80b8b095874c81b894bf951077a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Role: 0
-  HomePosition: {x: 0, y: 0}
-  AttackingPosition: {x: 0, y: 0}
-  DefendingPosition: {x: 0, y: 0}
-  AttackPoint: {fileID: 1399437145550962}
-  PassingForce: 5
-  MaxShootingForce: 5
-  DribbleForce: 1
-  TurningForce: 0.5
-  MinPassDistance: 1
-  ShootingConfidence: 0.8
-  ShootingAccuracy: 0.8
-  PreferedTurnDir: 1
-  Ball: {fileID: 0}
-  OpponentsGoal: {fileID: 0}
 --- !u!114 &114529524916327842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,6 +181,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Blue: 1
+--- !u!114 &114832135354352176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575708473539362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660ad02438428fe45af9889b1e42b3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Role: 0
+  HomePosition: {x: 0, y: 0}
+  AttackingPosition: {x: 0, y: 0}
+  DefendingPosition: {x: 0, y: 0}
+  AttackPoint: {fileID: 1399437145550962}
+  PassingForce: 5
+  MaxShootingForce: 5
+  DribbleForce: 1
+  TurningForce: 0.5
+  MinPassDistance: 1
+  ShootingConfidence: 0.8
+  ShootingAccuracy: 0.8
+  PreferedTurnDir: 1
+  Ball: {fileID: 0}
+  OpponentsGoal: {fileID: 0}
 --- !u!114 &114898783880286768
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -71,7 +71,11 @@ public class Team : MonoBehaviour
     {
         foreach (GameObject Footballer in NewPlayers)
         {
-            Players.Add(Footballer.GetComponent<Player>());
+            Player Guy = Footballer.GetComponent<Player>();
+
+            Guy.SetTeam(this);
+
+            Players.Add(Guy);
         }
 
         ControllingPlayer = Players[0];

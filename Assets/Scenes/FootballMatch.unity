@@ -185,17 +185,31 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -0.16
       objectReference: {fileID: 0}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
+    - target: {fileID: 0}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 338753124}
+    - target: {fileID: 0}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: OpponentsGoal
       value: 
       objectReference: {fileID: 338753124}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: Ball
       value: 
       objectReference: {fileID: 735231353}
-    m_RemovedComponents: []
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: AttackPoint
+      value: 
+      objectReference: {fileID: 1532442922}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &149982525 stripped
@@ -203,6 +217,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d,
     type: 2}
   m_PrefabInternal: {fileID: 902167794}
+--- !u!1 &302536521 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1399437145550962, guid: 799eafbdc60a88148b0df9b9866f747c,
+    type: 2}
+  m_PrefabInternal: {fileID: 497272361}
 --- !u!1 &326455300 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1978268195999318, guid: 1208dc1eb5fa75943ab23e411d55daf6,
@@ -413,17 +432,31 @@ Prefab:
       propertyPath: TargetAgent
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: Ball
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
+    - target: {fileID: 0}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 338753124}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: OpponentsGoal
       value: 
       objectReference: {fileID: 338753124}
-    m_RemovedComponents: []
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: AttackPoint
+      value: 
+      objectReference: {fileID: 302536521}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &505022670 stripped
@@ -558,6 +591,32 @@ GameObject:
   m_PrefabParentObject: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d,
     type: 2}
   m_PrefabInternal: {fileID: 1809360688}
+--- !u!114 &776869104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776869103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660ad02438428fe45af9889b1e42b3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Role: 0
+  HomePosition: {x: 0, y: 0}
+  AttackingPosition: {x: 0, y: 0}
+  DefendingPosition: {x: 0, y: 0}
+  AttackPoint: {fileID: 1480914674}
+  PassingForce: 5
+  MaxShootingForce: 5
+  DribbleForce: 1
+  TurningForce: 0.5
+  MinPassDistance: 1
+  ShootingConfidence: 0.8
+  ShootingAccuracy: 0.8
+  PreferedTurnDir: 1
+  Ball: {fileID: 735231353}
+  OpponentsGoal: {fileID: 437783253}
 --- !u!1 &809475604 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1978268195999318, guid: 1208dc1eb5fa75943ab23e411d55daf6,
@@ -589,6 +648,11 @@ MonoBehaviour:
   PreferedTurnDir: 1
   Ball: {fileID: 0}
   OpponentsGoal: {fileID: 0}
+--- !u!1 &851212447 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1399437145550962, guid: 799eafbdc60a88148b0df9b9866f747c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1193932370}
 --- !u!4 &884905732 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4601631971351572, guid: 1208dc1eb5fa75943ab23e411d55daf6,
@@ -601,78 +665,45 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1731374800}
     m_Modifications:
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_Name
-      value: RedPlayer (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.43287998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.43287998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.43287998
-      objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
-        type: 2}
-      propertyPath: MaxVelocity
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 0}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 437783253}
     - target: {fileID: 114107931702429388, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
       propertyPath: TargetAgent
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
-        type: 2}
-      propertyPath: Ball
-      value: 
-      objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
+    - target: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_Name
+      value: RedPlayer (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
       propertyPath: OpponentsGoal
       value: 
       objectReference: {fileID: 437783253}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.83
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
@@ -821,42 +852,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1731374800}
     m_Modifications:
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.011151407
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.9999379
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 1.2780001
-      objectReference: {fileID: 0}
     - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
       propertyPath: MaxVelocity
@@ -867,17 +862,44 @@ Prefab:
       propertyPath: TargetAgent
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: Ball
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
+    - target: {fileID: 0}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 437783253}
+    - target: {fileID: 114530992213060576, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: SlowRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
       propertyPath: OpponentsGoal
       value: 
       objectReference: {fileID: 437783253}
-    m_RemovedComponents: []
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.11
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1065968999 stripped
@@ -1029,17 +1051,31 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -1.67
       objectReference: {fileID: 0}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
+    - target: {fileID: 0}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 338753124}
+    - target: {fileID: 0}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: OpponentsGoal
       value: 
       objectReference: {fileID: 338753124}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: Ball
       value: 
       objectReference: {fileID: 735231353}
-    m_RemovedComponents: []
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: AttackPoint
+      value: 
+      objectReference: {fileID: 851212447}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1218377360 stripped
@@ -1059,80 +1095,54 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1731374800}
     m_Modifications:
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_Name
-      value: RedPlayer (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.43287998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.43287998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.43287998
-      objectReference: {fileID: 0}
-    - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
-      propertyPath: MaxVelocity
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 437783253}
     - target: {fileID: 114107931702429388, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
       propertyPath: TargetAgent
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
-        type: 2}
-      propertyPath: Ball
-      value: 
-      objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
-        type: 2}
-      propertyPath: OpponentsGoal
-      value: 
-      objectReference: {fileID: 437783253}
+    - target: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_Name
+      value: RedPlayer (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.66
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1426551739 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1399437145550962, guid: 799eafbdc60a88148b0df9b9866f747c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1605385828}
+--- !u!1 &1480914674 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1622489363688668, guid: e59f1724c6238e64eb4f4991c08fee6d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1809360688}
 --- !u!4 &1484009177 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c,
+    type: 2}
+  m_PrefabInternal: {fileID: 124575566}
+--- !u!1 &1532442922 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1399437145550962, guid: 799eafbdc60a88148b0df9b9866f747c,
     type: 2}
   m_PrefabInternal: {fileID: 124575566}
 --- !u!1 &1534503017 stripped
@@ -1179,21 +1189,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 338753124}
     - target: {fileID: 114632520563229530, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: TargetAgent
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
-        type: 2}
-      propertyPath: Ball
-      value: 
-      objectReference: {fileID: 735231353}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
-        type: 2}
-      propertyPath: OpponentsGoal
-      value: 
-      objectReference: {fileID: 338753124}
     - target: {fileID: 1575708473539362, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_Name
       value: BluePlayer (4)
@@ -1249,13 +1259,11 @@ Prefab:
       propertyPath: m_Name
       value: BluePlayer (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: OpponentsGoal
       value: 
       objectReference: {fileID: 338753124}
-    - target: {fileID: 114481885637622660, guid: 799eafbdc60a88148b0df9b9866f747c,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: Ball
       value: 
       objectReference: {fileID: 735231353}
@@ -1264,7 +1272,23 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 338753124}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: AttackPoint
+      value: 
+      objectReference: {fileID: 1426551739}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1724984387 stripped
@@ -1480,53 +1504,9 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1731374800}
     m_Modifications:
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_Name
       value: RedPlayer (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.43287998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.43287998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.43287998
       objectReference: {fileID: 0}
     - target: {fileID: 114085412680795906, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
@@ -1538,17 +1518,37 @@ Prefab:
       propertyPath: TargetAgent
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: Ball
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
+    - target: {fileID: 0}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 437783253}
+    - target: {fileID: 114530992213060576, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: SlowRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
       propertyPath: OpponentsGoal
       value: 
       objectReference: {fileID: 437783253}
-    m_RemovedComponents: []
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1874871267 stripped
@@ -1632,56 +1632,45 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1731374800}
     m_Modifications:
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2.624553
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.3503542
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 0}
+      propertyPath: OpponentsGoal
+      value: 
+      objectReference: {fileID: 437783253}
     - target: {fileID: 114107931702429388, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
       propertyPath: TargetAgent
       value: 
       objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
+    - target: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_Name
+      value: RedOutFieldPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 114530992213060576, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
-      propertyPath: Ball
-      value: 
-      objectReference: {fileID: 735231353}
-    - target: {fileID: 114343346082059446, guid: e59f1724c6238e64eb4f4991c08fee6d,
+      propertyPath: SlowRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
       propertyPath: OpponentsGoal
       value: 
       objectReference: {fileID: 437783253}
-    - target: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
-      propertyPath: m_Name
-      value: RedOutFieldPlayer
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 735231353}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
