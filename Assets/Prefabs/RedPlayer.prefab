@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 114107931702429388}
   - component: {fileID: 114530992213060576}
   - component: {fileID: 58245850923737032}
-  - component: {fileID: 50036549706114048}
   - component: {fileID: 114177506011334576}
   - component: {fileID: 114463876889725274}
+  - component: {fileID: 50155227617044826}
   m_Layer: 0
   m_Name: RedPlayer
   m_TagString: Untagged
@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1341334283867638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.89, y: -3.72, z: 0}
+  m_LocalPosition: {x: -4.65, y: -3.31, z: 0}
   m_LocalScale: {x: 0.43287998, y: 0.43287998, z: 0.43287998}
   m_Children:
   - {fileID: 4858416274137978}
@@ -78,7 +78,7 @@ Transform:
   m_Father: {fileID: 4416072132087762}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50036549706114048
+--- !u!50 &50155227617044826
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -89,7 +89,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -198,11 +198,15 @@ MonoBehaviour:
   DribbleForce: 1
   TurningForce: 0.5
   MinPassDistance: 1
+  KickingDistance: 0.5
   ShootingConfidence: 0.8
   ShootingAccuracy: 0.8
   PreferedTurnDir: 1
   Ball: {fileID: 0}
   OpponentsGoal: {fileID: 0}
+  TextOffSet: 0.8
+  StateTextObject: {fileID: 0}
+  DebugOn: 0
 --- !u!114 &114530992213060576
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -52,13 +52,12 @@ public class GlobalPlayerState : State
         {
             case PlayerMessages.ReceiveBall:
                 {
-                    GCHandle Handle = (GCHandle)Msg.ExtraInfo;
-                    Vector2 Pos = (Vector2)Handle.Target;
+                    //GCHandle Handle = (GCHandle)Msg.ExtraInfo;
+                    //Vector2 Pos = (Vector2)Handle.Target;
 
                     Steer2D.Arrive Arr = (Steer2D.Arrive)PlayerScript.GetSteeringController().GetBehaviourByTypeName("Steer2D.Arrive");
-                    Arr.TargetPoint = Pos;
-
-
+                    Arr.TargetPoint = Msg.ExtraInfo;
+                    
                     PlayerScript.ChangeState(CallingObject, ReceiveBall.Instance());
                     return true;
                 }
@@ -88,7 +87,7 @@ public class GlobalPlayerState : State
                     //If there is already a recieving player or the ball isnt in range then cant pass pall to requesting player
                     if (PlayerScript.GetTeam().RecievingPlayer != null || !PlayerScript.BallInKickingRange())
                     {
-                        Debug.Log("Can't make requested Pass");
+                        //Debug.Log("Can't make requested Pass");
                         return true;
                     }
 
@@ -103,14 +102,15 @@ public class GlobalPlayerState : State
                     float KickPower = PlayerScript.PassingForce * dot;
 
                     //Add force to the ball
-                    PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower);
+
+                    PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower, "Passing To Reqested Pass");
 
 
 
-                    GCHandle Handle = GCHandle.Alloc(Reciever.transform.position);
-                    System.IntPtr PositionPtr = (System.IntPtr)Handle;
+                    //GCHandle Handle = GCHandle.Alloc(Reciever.transform.position);
+                    //System.IntPtr PositionPtr = (System.IntPtr)Handle;
 
-                    Dispatcher.Instance().DispatchMessage(0, CallingObject, Reciever, PlayerMessages.ReceiveBall, PositionPtr);
+                    Dispatcher.Instance().DispatchMessage(0, CallingObject, Reciever, PlayerMessages.ReceiveBall, Reciever.transform.position);
 
                     PlayerScript.ChangeState(CallingObject, Wait.Instance());
 
@@ -158,6 +158,11 @@ public class ChaseBall : State
         FieldPlayer PlayerScript = CallingObject.GetComponent<FieldPlayer>();
 
         PlayerScript.GetSteeringController().TurnOn(Behaviour.Seek);
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Entering Player Chase Ball State");
+        }
     }
 
     /**
@@ -198,6 +203,11 @@ public class ChaseBall : State
         FieldPlayer PlayerScript = CallingObject.GetComponent<FieldPlayer>();
 
         PlayerScript.GetSteeringController().TurnOff(Behaviour.Seek);
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Exiting ChaseBall State");
+        }
     }
 }
 
@@ -226,6 +236,11 @@ public class Dribble : State
         FieldPlayer PlayerScript = CallingObject.GetComponent<FieldPlayer>();
 
         PlayerScript.GetTeam().ControllingPlayer = PlayerScript;
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Entering Player Dribble State");
+        }
     }
 
     /**
@@ -240,12 +255,14 @@ public class Dribble : State
         if (dot > 0.7f) //Facing the goal
         {
             //Dribble towards goal
-            PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.right * PlayerScript.DribbleForce);
+            
+            PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.right * PlayerScript.DribbleForce, "Dribbling Towards Goal");
         }
         else
         {
             //Kick to your prefered turn dir
-            PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.up * PlayerScript.TurningForce * PlayerScript.PreferedTurnDir);
+            //Debug.Log("Turning With Ball");
+            PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.up * PlayerScript.TurningForce * PlayerScript.PreferedTurnDir, "Turning With Ball");
         }
 
         PlayerScript.ChangeState(CallingObject, ChaseBall.Instance());
@@ -257,6 +274,12 @@ public class Dribble : State
     public override void Exit(GameObject CallingObject)
     {
         //Empty
+        FieldPlayer PlayerScript = CallingObject.GetComponent<FieldPlayer>();
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Exiting Player Dribble State");
+        }
     }
 }
 /*
@@ -288,6 +311,11 @@ public class ReturnToHomeRegion : State
         Steer2D.Arrive Arr = (Steer2D.Arrive)PlayerScript.GetSteeringController().GetBehaviourByTypeName("Steer2D.Arrive");
 
         Arr.TargetPoint = PlayerScript.HomePosition;
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Entering Player Return to home state");
+        }
     }
 
     /**
@@ -324,6 +352,12 @@ public class ReturnToHomeRegion : State
         FieldPlayer PlayerScript = CallingObject.GetComponent<FieldPlayer>();
 
         PlayerScript.GetSteeringController().TurnOff(Behaviour.Arrive);
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Exiting Player Return to home state");
+        }
+
     }
 }
 /*
@@ -348,6 +382,12 @@ public class Wait : State
     */
     public override void Enter(GameObject CallingObject)
     {
+        FieldPlayer PlayerScript = CallingObject.GetComponent<FieldPlayer>();
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Entering Wait State");
+        }
         //Empty
     }
 
@@ -384,6 +424,12 @@ public class Wait : State
     public override void Exit(GameObject CallingObject)
     {
         //Empty
+        FieldPlayer PlayerScript = CallingObject.GetComponent<FieldPlayer>();
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Exiting Wait State");
+        }
     }
 }
 /*
@@ -416,6 +462,11 @@ public class KickBall : State
         {
             PlayerScript.ChangeState(CallingObject, ChaseBall.Instance());
         }
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Entering Kick Ball State");
+        }
     }
 
     /**
@@ -447,8 +498,10 @@ public class KickBall : State
             //Set a kick power based on if the player is facing the ball
             KickPower = PlayerScript.MaxShootingForce * dot;
 
+            
+
             //Add force to the ball
-            PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower);
+            PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower, "Shooting Towards Goal");
 
 
             PlayerScript.ChangeState(CallingObject, Wait.Instance());
@@ -472,12 +525,15 @@ public class KickBall : State
             Vector2 KickDir = (PassTarget - (Vector2)PlayerScript.Ball.transform.position).normalized;
 
             //Add force to the ball
-            PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower);
+            PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower, "Passing To Player Indepentently");
 
-            GCHandle Handle = GCHandle.Alloc(PassTarget);
-            System.IntPtr PositionPtr = (System.IntPtr)Handle;
 
-            Dispatcher.Instance().DispatchMessage(0, CallingObject, Reciever.gameObject, PlayerMessages.ReceiveBall, PositionPtr);
+           
+
+            //GCHandle Handle = GCHandle.Alloc(PassTarget);
+            //System.IntPtr PositionPtr = (System.IntPtr)Handle;
+
+            Dispatcher.Instance().DispatchMessage(0, CallingObject, Reciever.gameObject, PlayerMessages.ReceiveBall, PassTarget);
 
             PlayerScript.ChangeState(CallingObject, Wait.Instance());
 
@@ -500,7 +556,12 @@ public class KickBall : State
     */
     public override void Exit(GameObject CallingObject)
     {
+        FieldPlayer PlayerScript = CallingObject.GetComponent<FieldPlayer>();
 
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Exiting KickBall State");
+        }
     }
 }
 /*
@@ -544,6 +605,11 @@ public class ReceiveBall : State
             Steer2D.Pursue Pur = (Steer2D.Pursue)PlayerScript.GetSteeringController().GetBehaviourByTypeName("Steer2D.Pursue");
             Pur.TargetAgent = PlayerScript.Ball;
         }
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Entering recieve ball state");
+        }
     }
 
     /**
@@ -583,6 +649,11 @@ public class ReceiveBall : State
         PlayerScript.GetSteeringController().TurnOff(Behaviour.Pursue);
 
         PlayerScript.GetTeam().RecievingPlayer = null;
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Exiting Receive ball state");
+        }
     }
 }
 
@@ -616,7 +687,10 @@ public class SupportAttacker : State
 
         Arr.TargetPoint = PlayerScript.GetTeam().GetSupportSpot();
 
-
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Entering Support Attacker State");
+        }
     }
 
     /**
@@ -673,6 +747,12 @@ public class SupportAttacker : State
         PlayerScript.GetTeam().SupportingPlayer = null;
 
         PlayerScript.GetSteeringController().TurnOff(Behaviour.Arrive);
+
+
+        if (PlayerScript.DebugOn)
+        {
+            Debug.Log("Exiting Support Attacker State");
+        }
 
     }
 }

@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public float TurningForce = 0.5f;
     public float MinPassDistance = 1.0f;
 
+    public float KickingDistance = 0.2f;
 
     public float ShootingConfidence = 0.8f;
     public float ShootingAccuracy = 0.8f;
@@ -45,6 +46,10 @@ public class Player : MonoBehaviour
     SteeringController SteerController;
 
     bool ClosestPlayer = false;
+
+    public float TextOffSet = 0.5f;
+    public GameObject StateTextObject;
+    public bool DebugOn = false;
 
     public Team GetTeam()
     {
@@ -78,16 +83,29 @@ public class Player : MonoBehaviour
         GlobalState = GlobalPlayerState.Instance();
 
         CurrentState.Enter(gameObject);
+
+        UpdateStateText();
     }
     // Update is called once per frame
     void Update ()
     {
         CurrentState.Excute(gameObject);
-	}
+
+        StateTextObject.transform.position = transform.position + new Vector3(0, TextOffSet,0);
+
+    }
 
     public void FindSupport()
     {
-        //TODO
+
+        if (PlayersTeam.SupportingPlayer == null)
+        {
+            Player Guy = PlayersTeam.DetermineBestSupportingAttacker();
+
+            PlayersTeam.SupportingPlayer = Guy;
+
+            Dispatcher.Instance().DispatchMessage(0, gameObject, Guy.gameObject, PlayerMessages.SupportAttacker);
+        }
     }
 
     public void SetDefaultHomeRegion()
@@ -107,7 +125,14 @@ public class Player : MonoBehaviour
 
     public bool BallInKickingRange()
     {
-        return true;
+        float Dist = Vector3.Distance(Ball.transform.position, gameObject.transform.position);
+
+        if (KickingDistance > Dist)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public bool IsClosestTeamMemberToBall()
@@ -124,6 +149,8 @@ public class Player : MonoBehaviour
         CurrentState = NewState;
 
         CurrentState.Enter(gameObject);
+
+        UpdateStateText();
     }
 
     public bool HandleMessage(Message Telegram)
@@ -141,13 +168,25 @@ public class Player : MonoBehaviour
 
     public void TrackBall()
     {
-        transform.rotation = Quaternion.LookRotation(Vector3.right, Ball.transform.position - transform.position);
+        //transform.rotation = Quaternion.LookRotation(Vector3.right, Ball.transform.position - transform.position);
     }
 
     public bool AheadOfAttacker()
     {
-        //TODO
-        return true;
+        float GoalXPos = OpponentsGoal.transform.position.x;
+        float AttackerX = PlayersTeam.ControllingPlayer.transform.position.x;
+        float PlayersX = gameObject.transform.position.x;
+
+        float PlayersDistToGoal = Vector2.Distance(OpponentsGoal.transform.position, gameObject.transform.position);
+        float AttackersDistToGoal = Vector2.Distance(OpponentsGoal.transform.position, PlayersTeam.ControllingPlayer.transform.position);
+
+
+        if (PlayersDistToGoal > AttackersDistToGoal)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public bool IsReadyForNextKick()
@@ -176,8 +215,17 @@ public class Player : MonoBehaviour
 
     public bool IsOppenentWithinRadius()
     {
+        foreach (Player Guy in PlayersTeam.Opponents.Players)
+        {
 
-        return true;
+            float Dist = 0.2f;
+            if (Dist > Vector2.Distance(Guy.gameObject.transform.position, gameObject.transform.position))
+            {
+                return true;
+            }
+
+        }
+        return false;
     }
 
     public bool BallInReceivingRange()
@@ -187,8 +235,12 @@ public class Player : MonoBehaviour
 
     public bool IsThreatened()
     {
-        //TODO
-        return true;
+        if (IsOppenentWithinRadius())
+        {
+            return true;
+
+        }
+        return false;
     }
 
     public void SetClosestTeamMemberToBall(bool IsClosest)
@@ -210,5 +262,10 @@ public class Player : MonoBehaviour
     {
         //TODO
         return true;
+    }
+
+    void UpdateStateText()
+    {
+        StateTextObject.GetComponent<TextMesh>().text = CurrentState.GetType().ToString();
     }
 }

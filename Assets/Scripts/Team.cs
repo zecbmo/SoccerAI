@@ -52,6 +52,8 @@ public class Team : MonoBehaviour
     */
     SupportPosition BestSupportingSpot;// = null;
 
+    public bool DebugOn = false;
+
     public void Init(Region Pitch, List<GameObject> NewPlayers)
     {
         Players = new List<Player>();
@@ -61,6 +63,8 @@ public class Team : MonoBehaviour
 
         CurrentState = Defending.Instance();
         PreviousState = Defending.Instance();
+
+        CurrentState.Enter(gameObject);
 
     }
 
@@ -93,6 +97,11 @@ public class Team : MonoBehaviour
 
     public Player DetermineBestSupportingAttacker()
     {
+        if (DebugOn)
+        {
+            Debug.Log("Determining Best Supporting Attacker");
+        }
+
         float ShortestDistanceSoFar = 100000f;
 
         Player ClosestPlayer = null;
@@ -255,7 +264,10 @@ public class Team : MonoBehaviour
 
     public Vector2 DetermineBestSupportingPosition()
     {
-
+        if (DebugOn)
+        {
+           // Debug.Log("Determining Best Support Position For Attacker");
+        }
         Vector2 BestPoition = new Vector2(0, 0);
 
 
@@ -411,7 +423,7 @@ public class Team : MonoBehaviour
 
         if(IsPassSafeFromAllOpponents(ControllingPlayer.gameObject.transform.position, RequestingPlayer.transform.position, RequestingPlayer, ControllingPlayer.PassingForce))
         {
-            Dispatcher.Instance().DispatchMessage(0, RequestingPlayer, ControllingPlayer.gameObject, PlayerMessages.PassToMe);
+           // Dispatcher.Instance().DispatchMessage(0, RequestingPlayer, ControllingPlayer.gameObject, PlayerMessages.PassToMe);
         }
 
     }
@@ -439,6 +451,7 @@ public class Team : MonoBehaviour
         if (ClosestPlayer)
         {
             ClosestPlayer.SetClosestTeamMemberToBall(true);
+            ClosetPlayerToBall = ClosestPlayer;
         }
         else
         {

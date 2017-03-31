@@ -38,6 +38,7 @@ public class Football : MonoBehaviour {
     //    }
     //}
 
+    public bool DebugOn = false;
 
     Rigidbody2D RB;
 
@@ -62,8 +63,14 @@ public class Football : MonoBehaviour {
         return TimeToCoverDistance;
     }
 
-    public void AddForce(Vector2 ForceVec)
+    public void AddForce(Vector2 ForceVec, string DebugString = "Kicking Ball")
     {
+        if (DebugOn)
+        {
+            Debug.Log(DebugString);
+        }
+
+        //print("Kicking Ball");
         RB.velocity = new Vector2(0, 0); //Kicker wont deal with opposing forces already inacting on ball
         RB.AddForce(ForceVec, ForceMode2D.Impulse);
     }

@@ -15,7 +15,7 @@ public class SteeringController : MonoBehaviour
 
         foreach (Steer2D.SteeringBehaviour b in Behaviours)
         {
-            print(b.GetType().ToString());
+           // print(b.GetType().ToString());
         }
     }
 

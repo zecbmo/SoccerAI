@@ -72,7 +72,7 @@ public class Region : MonoBehaviour {
     /**
     *   Bool monitoring whether the Game is play or not
     */
-    private bool GameInPlay = false;
+    public bool GameInPlay = false;
 
     public int counter = 0;
 
@@ -108,8 +108,8 @@ public class Region : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        counter++;
-        RedTeam.DetermineBestSupportingPosition();
+        //counter++;
+        //RedTeam.DetermineBestSupportingPosition();
     }
 
   
@@ -185,7 +185,7 @@ public class Region : MonoBehaviour {
     public bool GoalKeeperHasBall()
     {
         //TODO
-        return true;
+        return false;
     }
 
 

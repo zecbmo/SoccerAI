@@ -32,12 +32,19 @@ public class Defending : State
     */
     public override void Enter(GameObject CallingObject)
     {
+        
+
         Team TeamScript = CallingObject.GetComponent<Team>();
 
         TeamScript.SetHomeRegions(HomeRegions.Defending);
 
 
         TeamScript.UpdateTargetsOfWaitingPlayers();
+
+        if (TeamScript.DebugOn)
+        {
+            Debug.Log("Entering Team Defending State ");
+        }
     }
 
     /**
@@ -52,6 +59,8 @@ public class Defending : State
             TeamScript.ChangeState(CallingObject, Attacking.Instance());
 
         }
+
+    
     }
 
     /**
@@ -59,6 +68,12 @@ public class Defending : State
     */
     public override void Exit(GameObject CallingObject)
     {
+        Team TeamScript = CallingObject.GetComponent<Team>();
+
+        if (TeamScript.DebugOn)
+        {
+            Debug.Log("Exiting Team Defending State ");
+        }
 
     }
 }
@@ -90,6 +105,8 @@ public class PrepareForKickoff : State
     */
     public override void Enter(GameObject CallingObject)
     {
+       
+
 
         Team TeamScript = CallingObject.GetComponent<Team>();
 
@@ -102,6 +119,12 @@ public class PrepareForKickoff : State
 
         //send players home
         TeamScript.ReturnAllFieldPlayersToHome();
+
+        if (TeamScript.DebugOn)
+        {
+            Debug.Log("Entering Team Prepare for KickOff State");
+        }
+
     }
 
     /**
@@ -126,6 +149,12 @@ public class PrepareForKickoff : State
         Team TeamScript = CallingObject.GetComponent<Team>();
 
         TeamScript.GetPitch().SetGameInPlay(true);
+
+
+        if (TeamScript.DebugOn)
+        {
+            Debug.Log("Exiting Team Prepare for kickoff state");
+        }
     }
 
 }
@@ -160,6 +189,12 @@ public class Attacking : State
         TeamScript.SetHomeRegions(HomeRegions.Attacking);
 
         TeamScript.UpdateTargetsOfWaitingPlayers();
+
+
+        if (TeamScript.DebugOn)
+        {
+            Debug.Log("Entering Team Attacking State");
+        }
     }
 
     /**
@@ -186,6 +221,12 @@ public class Attacking : State
         Team TeamScript = CallingObject.GetComponent<Team>();
 
         TeamScript.SupportingPlayer = null;
+
+
+        if (TeamScript.DebugOn)
+        {
+            Debug.Log("Exiting Team Attacking State");
+        }
     }
 
 }

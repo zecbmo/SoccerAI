@@ -17,27 +17,27 @@ public enum PlayerMessages
 
 public class Message 
 {
-    public void BuildMessage(float TimeDelay, GameObject SenderObj, GameObject RecieverObj, PlayerMessages MessageToSend, System.IntPtr AnyExtraInfo = new System.IntPtr() )
+    public void BuildMessage(float TimeDelay, GameObject SenderObj, GameObject RecieverObj, PlayerMessages MessageToSend, Vector3 ExtraVectorInfo )
     {
         Sender = SenderObj;           
         Reciever = RecieverObj;
         Msg = MessageToSend;
         DisptachTime = TimeDelay;
-        ExtraInfo = AnyExtraInfo;
+        ExtraInfo = ExtraVectorInfo;
 }
 
     public GameObject Sender;
     public GameObject Reciever;
     public PlayerMessages Msg;
     public float DisptachTime = 0;
-    public System.IntPtr ExtraInfo;
+    public Vector3 ExtraInfo;
 
   
 }
 
 
 
-public class Dispatcher : MonoBehaviour
+public class Dispatcher 
 {
     private List<Message> DelayedMessages = new List<Message>();
 
@@ -68,7 +68,7 @@ public class Dispatcher : MonoBehaviour
         }
     }
 
-    public void DispatchMessage(float Delay, GameObject Sender, GameObject Reciever, PlayerMessages MessageToSend, System.IntPtr ExtraInfo = new System.IntPtr())
+    public void DispatchMessage(float Delay, GameObject Sender, GameObject Reciever, PlayerMessages MessageToSend, Vector3 ExtraInfo = new Vector3())
     {
         if (Reciever == null)
         {
