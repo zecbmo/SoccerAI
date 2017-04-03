@@ -116,7 +116,7 @@ public class GlobalPlayerState : State
                     //GCHandle Handle = GCHandle.Alloc(Reciever.transform.position);
                     //System.IntPtr PositionPtr = (System.IntPtr)Handle;
 
-                    Dispatcher.Instance().DispatchMessage(0, CallingObject, Reciever, PlayerMessages.ReceiveBall, Reciever.transform.position);
+                    Dispatcher.Instance().DispatchMessage(0, CallingObject, Reciever, PlayerMessages.ReceiveBall, PassTarget);
 
                     PlayerScript.ChangeState(CallingObject, Wait.Instance());
 
@@ -532,9 +532,24 @@ public class KickBall : State
         Player Reciever = null;
         Vector3 PassingTarget = new Vector3();
 
+
+    
         //Attempt to pass to player
         if (PlayerScript.IsThreatened() && PlayerScript.GetTeam().FindPass(PlayerScript, out Reciever, out PassingTarget, KickPower))
         {
+
+            float FacingPassingPlayerDot = Vector3.Dot(CallingObject.transform.right, (PassingTarget - CallingObject.transform.position).normalized);
+
+            if (dot < 0.7f) //not facing the player
+            {
+                PlayerScript.FindSupport();
+
+                PlayerScript.ChangeState(CallingObject, Dribble.Instance());
+
+                return;
+            }
+
+
             Vector2 PassTarget = PlayerScript.AddNoiseToTarget(PassingTarget); //TODO **** Make sure this works! *****
 
             //Get the direction of the shot
@@ -750,6 +765,12 @@ public class SupportAttacker : State
             }
         }
 
+        //If closest to ball and not in goalkeepers hands... Chase the ball
+        if (PlayerScript.IsClosestTeamMemberToBall() && (!PlayerScript.GetTeam().GetPitch().GoalKeeperHasBall()))
+        {
+            PlayerScript.ChangeState(CallingObject, ChaseBall.Instance());
+            return;
+        }
 
     }
 

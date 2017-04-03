@@ -303,7 +303,7 @@ public class Team : MonoBehaviour
 
                 if (dist < OptimalDisitance)
                 {
-                    SP.Weighting += (OptimalDisitance - dist)/2f;
+                    SP.Weighting += (OptimalDisitance - dist)/4f;
                 }
 
            

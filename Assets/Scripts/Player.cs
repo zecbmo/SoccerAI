@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
         foreach (Player Guy in PlayersTeam.Opponents.Players)
         {
 
-            float Dist = 0.2f;
+            float Dist = 1f;
             if (Dist > Vector2.Distance(Guy.gameObject.transform.position, gameObject.transform.position))
             {
                 return true;
@@ -243,7 +243,14 @@ public class Player : MonoBehaviour
 
     public bool BallInReceivingRange()
     {
-        return true;
+        float Dist = Vector3.Distance(Ball.transform.position, gameObject.transform.position);
+
+        if (KickingDistance > Dist)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public bool IsThreatened()

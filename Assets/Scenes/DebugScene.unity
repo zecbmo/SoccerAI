@@ -348,11 +348,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.92
+      value: 2.34
       objectReference: {fileID: 0}
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.11
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -449,7 +449,12 @@ Prefab:
     - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: PassingForce
-      value: 3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: MaxShootingForce
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
@@ -512,7 +517,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 735231353}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1213,11 +1218,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.46
+      value: -1.41
       objectReference: {fileID: 0}
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.93
+      value: -0.97
       objectReference: {fileID: 0}
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1330,7 +1335,12 @@ Prefab:
     - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: PassingForce
-      value: 3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: MaxShootingForce
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
@@ -1435,7 +1445,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.6
+      value: -1.82
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.z

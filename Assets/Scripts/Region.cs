@@ -110,6 +110,24 @@ public class Region : MonoBehaviour {
     {
         //counter++;
         //RedTeam.DetermineBestSupportingPosition();
+
+        if (RedTeam.Ball.transform.position.x < -2)
+        {
+            RedTeam.SetHomeRegions(HomeRegions.Defending);
+            BlueTeam.SetHomeRegions(HomeRegions.Attacking);
+            RedTeam.UpdateTargetsOfWaitingPlayers();
+            BlueTeam.UpdateTargetsOfWaitingPlayers();
+
+        }
+
+        if (RedTeam.Ball.transform.position.x > 2)
+        {
+            BlueTeam.SetHomeRegions(HomeRegions.Defending);
+            RedTeam.SetHomeRegions(HomeRegions.Attacking);
+            RedTeam.UpdateTargetsOfWaitingPlayers();
+            BlueTeam.UpdateTargetsOfWaitingPlayers();
+
+        }
     }
 
   
