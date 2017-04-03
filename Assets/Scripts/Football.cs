@@ -39,12 +39,17 @@ public class Football : MonoBehaviour {
     //}
 
     public bool DebugOn = false;
+    public bool DebugTextOn = false;
 
     Rigidbody2D RB;
 
+    Color[] DebugColours = {Color.red, Color.blue, Color.yellow, Color.magenta, Color.cyan };
+    Color DrawColour;
+    int DegbugCount = 0;
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+        DrawColour = DebugColours[DegbugCount];
     }
 
     public float CalculateTimeToCoverDistance(Vector3 Target, float Force)
@@ -63,9 +68,18 @@ public class Football : MonoBehaviour {
         return TimeToCoverDistance;
     }
 
-    public void AddForce(Vector2 ForceVec, string DebugString = "Kicking Ball")
+    public void AddForce(Vector2 ForceVec, Vector2 DebugTarget, string DebugString = "Kicking Ball")
     {
         if (DebugOn)
+        {
+          
+
+            Debug.DrawLine(transform.position, DebugTarget, DrawColour, 0.5f);
+            DrawColour = NextDebugColour();
+
+        }
+
+        if (DebugTextOn)
         {
             Debug.Log(DebugString);
         }
@@ -74,5 +88,21 @@ public class Football : MonoBehaviour {
         RB.velocity = new Vector2(0, 0); //Kicker wont deal with opposing forces already inacting on ball
         RB.AddForce(ForceVec, ForceMode2D.Impulse);
     }
-  
+
+    Color NextDebugColour()
+    {
+        Color NextCol = new Color();
+
+        DegbugCount++;
+
+        if (DegbugCount >= DebugColours.Length)
+        {
+            DegbugCount = 0;
+        }
+
+        NextCol = DebugColours[DegbugCount];
+
+        return NextCol;
+
+    }
 }

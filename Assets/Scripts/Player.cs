@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     public float TurningForce = 0.5f;
     public float MinPassDistance = 1.0f;
 
+    public float KickDelay = 0.5f;
+    private float NextKick = 0f;
     public float KickingDistance = 0.2f;
 
     public float ShootingConfidence = 0.8f;
@@ -85,6 +87,8 @@ public class Player : MonoBehaviour
         CurrentState.Enter(gameObject);
 
         UpdateStateText();
+
+        NextKick = Time.time + KickDelay;
     }
     // Update is called once per frame
     void Update ()
@@ -169,6 +173,11 @@ public class Player : MonoBehaviour
     public void TrackBall()
     {
         //transform.rotation = Quaternion.LookRotation(Vector3.right, Ball.transform.position - transform.position);
+
+        Vector2 Dir = Ball.transform.position - transform.position;
+
+        float Angle = Mathf.Atan2(Dir.y, Dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
     }
 
     public bool AheadOfAttacker()
@@ -191,8 +200,12 @@ public class Player : MonoBehaviour
 
     public bool IsReadyForNextKick()
     {
-        //TODO
-        return true;
+        if (NextKick < Time.time)
+        {
+            NextKick = Time.time + KickDelay;
+            return true;
+        }
+        return false;
     }
 
     //public Vector2 GetShotTarget()

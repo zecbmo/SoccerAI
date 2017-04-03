@@ -147,7 +147,7 @@ public class Team : MonoBehaviour
         Vector2 ToTarget = (Target - From).normalized;
 
 
-        float dot = Vector3.Dot(ToTarget, (Opponent.gameObject.transform.position - Reciever.gameObject.transform.position).normalized);
+        float dot = Vector3.Dot(ToTarget, ( Reciever.gameObject.transform.position - Opponent.gameObject.transform.position).normalized);
 
         if (dot > 0.8f) //opponent between player and reciever
         {
@@ -246,6 +246,7 @@ public class Team : MonoBehaviour
             {
                 if (IsPassSafeFromAllOpponents(ShootingPosition, Shot, Opponents.GoalObject, ShootingForce))
                 {
+                    Target = Shot;
                     return true;
                 }
             }
@@ -281,12 +282,12 @@ public class Team : MonoBehaviour
             //Calculate the Passing Score to position
             if (IsPassSafeFromAllOpponents(ControllingPlayer.transform.position, SP.Position, SP.obj, ControllingPlayer.PassingForce))
             {
-                SP.Weighting += PitchRef.GetSafePassScore();
+                SP.Weighting += PitchRef.GetSafePassScore() ;
             }
 
             //Determine if a goal can be scored from the posiiton
             Vector2 Outtarget = new Vector2();
-            if (CanShoot(SP.Position, out Outtarget, ControllingPlayer.MaxShootingForce))
+            if (CanShoot(SP.Position, out Outtarget, 4))
             {
                 SP.Weighting += PitchRef.GetShootingChanceScore();
             }
@@ -295,14 +296,14 @@ public class Team : MonoBehaviour
 
             if (SupportingPlayer)
             {
-                float OptimalDisitance = 5.0f;
+                float OptimalDisitance = 1.0f;
 
                 Vector2 PassingVector = SP.Position - (Vector2)SupportingPlayer.transform.position;
                 float dist = PassingVector.magnitude;
 
                 if (dist < OptimalDisitance)
                 {
-                   //TODO 
+                    SP.Weighting += (OptimalDisitance - dist)/2f;
                 }
 
            
@@ -423,7 +424,7 @@ public class Team : MonoBehaviour
 
         if(IsPassSafeFromAllOpponents(ControllingPlayer.gameObject.transform.position, RequestingPlayer.transform.position, RequestingPlayer, ControllingPlayer.PassingForce))
         {
-           // Dispatcher.Instance().DispatchMessage(0, RequestingPlayer, ControllingPlayer.gameObject, PlayerMessages.PassToMe);
+            Dispatcher.Instance().DispatchMessage(0, RequestingPlayer, ControllingPlayer.gameObject, PlayerMessages.PassToMe);
         }
 
     }
@@ -458,5 +459,12 @@ public class Team : MonoBehaviour
             print("ERROR!! Closest Player Not Found.... This function is broke");
         }
 
+    }
+
+    public void SetControllingPlayer(Player NewControllingPlayer)
+    {
+        ControllingPlayer = NewControllingPlayer;
+
+        Opponents.ControllingPlayer = null;
     }
 }

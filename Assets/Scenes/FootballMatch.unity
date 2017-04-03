@@ -159,6 +159,35 @@ Prefab:
       propertyPath: m_Name
       value: BluePlayer (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: DebugOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: Friction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 15.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
@@ -174,7 +203,7 @@ GameObject:
   - component: {fileID: 18282121}
   - component: {fileID: 18282120}
   m_Layer: 0
-  m_Name: Text (3)
+  m_Name: RedTeamStates3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +247,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -270,11 +299,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.53
+      value: 2.07
       objectReference: {fileID: 0}
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.89
+      value: -0.88
       objectReference: {fileID: 0}
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -339,7 +368,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 8.3
+      value: 5.11
       objectReference: {fileID: 0}
     - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -376,7 +405,7 @@ Prefab:
     - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: DebugOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
@@ -397,6 +426,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: Friction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -586,7 +635,7 @@ GameObject:
   - component: {fileID: 446630285}
   - component: {fileID: 446630284}
   m_Layer: 0
-  m_Name: Text (3)
+  m_Name: BlueTeamStates3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,7 +679,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -747,6 +796,34 @@ Prefab:
       propertyPath: StateTextObject
       value: 
       objectReference: {fileID: 1936504382}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: Friction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 6.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
@@ -767,7 +844,7 @@ GameObject:
   - component: {fileID: 685242557}
   - component: {fileID: 685242556}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: RedTeamStates1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -811,7 +888,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -890,6 +967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugOn: 1
+  DebugTextOn: 1
 --- !u!50 &735231355
 Rigidbody2D:
   serializedVersion: 4
@@ -901,7 +979,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -985,7 +1063,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.31
+      value: -2.77
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1031,6 +1109,20 @@ Prefab:
       propertyPath: StateTextObject
       value: 
       objectReference: {fileID: 878114539}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: PassingForce
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 4.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
@@ -1065,6 +1157,7 @@ MonoBehaviour:
   DribbleForce: 1
   TurningForce: 0.5
   MinPassDistance: 1
+  KickDelay: 0.5
   KickingDistance: 0.2
   ShootingConfidence: 0.8
   ShootingAccuracy: 0.8
@@ -1091,7 +1184,7 @@ GameObject:
   - component: {fileID: 878114541}
   - component: {fileID: 878114543}
   m_Layer: 0
-  m_Name: Text
+  m_Name: RedTeamStates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1124,7 +1217,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -1218,11 +1311,11 @@ Prefab:
       objectReference: {fileID: 735231353}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.96
+      value: -0.64
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.83
+      value: -3.03
       objectReference: {fileID: 0}
     - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
@@ -1239,6 +1332,15 @@ Prefab:
       propertyPath: StateTextObject
       value: 
       objectReference: {fileID: 1872641915}
+    - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 19.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
@@ -1452,7 +1554,7 @@ GameObject:
   - component: {fileID: 1070218680}
   - component: {fileID: 1070218682}
   m_Layer: 0
-  m_Name: Text
+  m_Name: BlueTeamStates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,7 +1587,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -1621,7 +1723,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.67
+      value: -5.18
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: OpponentsGoal
@@ -1671,6 +1773,26 @@ Prefab:
       propertyPath: StateTextObject
       value: 
       objectReference: {fileID: 446630282}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: Friction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
@@ -1697,7 +1819,7 @@ GameObject:
   - component: {fileID: 1357278760}
   - component: {fileID: 1357278759}
   m_Layer: 0
-  m_Name: Text (2)
+  m_Name: BlueTeamStates2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1741,7 +1863,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -1788,11 +1910,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.11
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 2.48
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1842,6 +1964,19 @@ Prefab:
       propertyPath: StateTextObject
       value: 
       objectReference: {fileID: 1837412319}
+    - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
@@ -1857,7 +1992,7 @@ GameObject:
   - component: {fileID: 1429423411}
   - component: {fileID: 1429423410}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: BlueTeamStates1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1901,7 +2036,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -2017,6 +2152,34 @@ Prefab:
       propertyPath: StateTextObject
       value: 
       objectReference: {fileID: 1429423408}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50990139676685904, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114238196232687328, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: Friction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 15.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
   m_IsPrefabParent: 0
@@ -2084,7 +2247,7 @@ MonoBehaviour:
   Opponents: {fileID: 1754033294}
   GoalObject: {fileID: 338753124}
   NoAttemptsToFindGoodShotAtGoal: 5
-  ShootingOffsetForFindingGoodShot: 0.5
+  ShootingOffsetForFindingGoodShot: 0
   ChancePlayersWontListenToPassRequest: 5
   Ball: {fileID: 735231353}
   DebugOn: 0
@@ -2288,7 +2451,7 @@ Prefab:
       objectReference: {fileID: 735231353}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.98
+      value: -4.72
       objectReference: {fileID: 0}
     - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
@@ -2305,6 +2468,23 @@ Prefab:
       propertyPath: StateTextObject
       value: 
       objectReference: {fileID: 685242554}
+    - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 14.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -2323,7 +2503,7 @@ GameObject:
   - component: {fileID: 1837412322}
   - component: {fileID: 1837412321}
   m_Layer: 0
-  m_Name: Text (4)
+  m_Name: RedTeamStates4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2367,7 +2547,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -2417,7 +2597,7 @@ GameObject:
   - component: {fileID: 1872641918}
   - component: {fileID: 1872641917}
   m_Layer: 0
-  m_Name: Text (2)
+  m_Name: RedTeamStates2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2461,7 +2641,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -2575,7 +2755,7 @@ GameObject:
   - component: {fileID: 1936504385}
   - component: {fileID: 1936504384}
   m_Layer: 0
-  m_Name: Text (4)
+  m_Name: BlueTeamStates4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2600,7 +2780,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1936504382}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae9a301620039594794c5dcfc105cee3, type: 3}
   m_Name: 
@@ -2619,7 +2799,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 100
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 0}
@@ -2708,11 +2888,11 @@ Prefab:
       objectReference: {fileID: 735231353}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.28
+      value: -1.53
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.19
+      value: -3.98
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_RootOrder
@@ -2733,6 +2913,15 @@ Prefab:
       propertyPath: StateTextObject
       value: 
       objectReference: {fileID: 18282118}
+    - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
+        type: 2}
+      propertyPath: TextOffSet
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
   m_IsPrefabParent: 0
