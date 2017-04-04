@@ -495,7 +495,7 @@ public class KickBall : State
         float dot = Vector3.Dot(CallingObject.transform.right, (PlayerScript.Ball.transform.position - CallingObject.transform.position).normalized);
         float KickPower;
         //If goal keeper has ball/already a recieving player / ball behind player the chase ball
-        if (PlayerScript.GetTeam().RecievingPlayer != null || PlayerScript.GetTeam().GetPitch().GoalKeeperHasBall() || (dot < 0))
+        if ( PlayerScript.GetTeam().GetPitch().GoalKeeperHasBall() || (dot < 0))
         {
             PlayerScript.ChangeState(CallingObject, ChaseBall.Instance());
         }
@@ -665,6 +665,12 @@ public class ReceiveBall : State
             //PlayerScript.GetSteeringController().TurnOff(Behaviour.Arrive);        
            // PlayerScript.GetSteeringController().TurnOff(Behaviour.Pursue);
             PlayerScript.TrackBall();
+
+            if (PlayerScript.IsClosestTeamMemberToBall())
+            {
+                PlayerScript.ChangeState(CallingObject, ChaseBall.Instance());
+
+            }
         }
 
     }

@@ -92,7 +92,7 @@ public class Team : MonoBehaviour
     }
     public void DebugThis()
     {
-        Debug.Log(PitchRef.counter);
+       // Debug.Log(PitchRef.counter);
     }
 
     public Player DetermineBestSupportingAttacker()
@@ -145,15 +145,18 @@ public class Team : MonoBehaviour
     {
         //TODO ***make sure this works!***
         Vector2 ToTarget = (Target - From).normalized;
+        Vector2 ToOpp = (Opponent.transform.position - (Vector3)From).normalized;
+
+        float dot = Vector3.Dot(ToTarget, ToOpp);
 
 
-        float dot = Vector3.Dot(ToTarget, ( Reciever.gameObject.transform.position - Opponent.gameObject.transform.position).normalized);
+        //float dot = Vector3.Dot(ToTarget, ( Reciever.gameObject.transform.position + Opponent.gameObject.transform.position).normalized);
 
-        if (dot > 0.8f) //opponent between player and reciever
+        if (dot > 0.95f) //opponent between player and reciever
         {
             return false;
         }
-        else if (dot < 0) //Behind players
+        else 
         {
             return true;
         }
@@ -466,5 +469,10 @@ public class Team : MonoBehaviour
         ControllingPlayer = NewControllingPlayer;
 
         Opponents.ControllingPlayer = null;
+    }
+
+    public State GetState()
+    {
+        return CurrentState;
     }
 }

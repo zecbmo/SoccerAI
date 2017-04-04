@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+public enum TeamEnums { RedTeam, BlueTeam};
 
 public class SupportPosition 
 {
@@ -74,7 +76,15 @@ public class Region : MonoBehaviour {
     */
     public bool GameInPlay = false;
 
-    public int counter = 0;
+    public GameObject RedTeamStateUI;
+    public GameObject BlueTeamStateUI;
+
+    public GameObject BlueTeamScoreText;
+    public GameObject RedTeamScoreText;
+
+    private int RedScore = 0;
+    private int BlueScore = 0;
+
 
 
     void Start ()
@@ -128,9 +138,17 @@ public class Region : MonoBehaviour {
             BlueTeam.UpdateTargetsOfWaitingPlayers();
 
         }
+
+        if (RedTeamStateUI && BlueTeamStateUI)
+        {
+
+            RedTeamStateUI.GetComponent<TextMesh>().text = RedTeam.GetState().GetType().ToString();
+            BlueTeamStateUI.GetComponent<TextMesh>().text = BlueTeam.GetState().GetType().ToString();
+        }
+
     }
 
-  
+
 
     void SetUpSupportRegions()
     {
@@ -206,5 +224,40 @@ public class Region : MonoBehaviour {
         return false;
     }
 
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 
+    public void GoalScored(TeamEnums WhoScored)
+    {
+        switch (WhoScored)
+        {
+            case TeamEnums.BlueTeam:
+                BlueScore++;
+                BlueTeamScoreText.GetComponent<TextMesh>().text = BlueScore.ToString();
+                break;
+            case TeamEnums.RedTeam:
+                RedScore++;
+                RedTeamScoreText.GetComponent<TextMesh>().text = RedScore.ToString();
+                break;
+        }
+
+        CheckForWinners();
+    }
+
+    void CheckForWinners()
+    {
+        if (BlueScore >= 5)
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        if (RedScore >= 5)
+        {
+            SceneManager.LoadScene(2);
+        }
+    }
 }
+
+
