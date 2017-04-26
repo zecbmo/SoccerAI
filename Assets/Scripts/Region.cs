@@ -121,22 +121,25 @@ public class Region : MonoBehaviour {
         //counter++;
         //RedTeam.DetermineBestSupportingPosition();
 
-        if (RedTeam.Ball.transform.position.x < -2)
+        if (GameInPlay)
         {
-            RedTeam.SetHomeRegions(HomeRegions.Defending);
-            BlueTeam.SetHomeRegions(HomeRegions.Attacking);
-            RedTeam.UpdateTargetsOfWaitingPlayers();
-            BlueTeam.UpdateTargetsOfWaitingPlayers();
+            if (RedTeam.Ball.transform.position.x < -2)
+            {
+                RedTeam.SetHomeRegions(HomeRegions.Defending);
+                BlueTeam.SetHomeRegions(HomeRegions.Attacking);
+                RedTeam.UpdateTargetsOfWaitingPlayers();
+                BlueTeam.UpdateTargetsOfWaitingPlayers();
 
-        }
+            }
 
-        if (RedTeam.Ball.transform.position.x > 2)
-        {
-            BlueTeam.SetHomeRegions(HomeRegions.Defending);
-            RedTeam.SetHomeRegions(HomeRegions.Attacking);
-            RedTeam.UpdateTargetsOfWaitingPlayers();
-            BlueTeam.UpdateTargetsOfWaitingPlayers();
+            if (RedTeam.Ball.transform.position.x > 2)
+            {
+                BlueTeam.SetHomeRegions(HomeRegions.Defending);
+                RedTeam.SetHomeRegions(HomeRegions.Attacking);
+                RedTeam.UpdateTargetsOfWaitingPlayers();
+                BlueTeam.UpdateTargetsOfWaitingPlayers();
 
+            }
         }
 
         if (RedTeamStateUI && BlueTeamStateUI)
@@ -236,13 +239,21 @@ public class Region : MonoBehaviour {
             case TeamEnums.BlueTeam:
                 BlueScore++;
                 BlueTeamScoreText.GetComponent<TextMesh>().text = BlueScore.ToString();
+               
                 break;
             case TeamEnums.RedTeam:
                 RedScore++;
                 RedTeamScoreText.GetComponent<TextMesh>().text = RedScore.ToString();
+
                 break;
         }
+        RedTeam.ChangeState(RedTeam.gameObject, PrepareForKickoff.Instance());
+        BlueTeam.ChangeState(BlueTeam.gameObject, PrepareForKickoff.Instance());
 
+        RedTeam.Ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
+        RedTeam.Ball.transform.position = new Vector2(0,0);
+        GameInPlay = false;
         CheckForWinners();
     }
 

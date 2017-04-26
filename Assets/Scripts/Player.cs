@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
     public float ShootingConfidence = 0.8f;
     public float ShootingAccuracy = 0.8f;
+    public float ShootingRange = 2.0f;
 
     //will be one or minus one // randomised on start
     public int PreferedTurnDir = 1;
@@ -112,9 +113,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool InShootingRange()
+    {
+
+        float Dist = Vector3.Distance(OpponentsGoal.transform.position, gameObject.transform.position);
+
+        if (Dist < ShootingRange)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
     public void SetDefaultHomeRegion()
     {
-        //TODO
+        HomePosition = DefendingPosition;
     }
 
 
@@ -280,8 +295,14 @@ public class Player : MonoBehaviour
 
     public bool InHomePosition()
     {
-        //TODO
-        return true;
+        float Dist = Vector3.Distance(HomePosition, gameObject.transform.position);
+
+        if (0.5f > Dist)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     void UpdateStateText()

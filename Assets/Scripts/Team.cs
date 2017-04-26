@@ -261,6 +261,8 @@ public class Team : MonoBehaviour
         return false;
     }
 
+
+
     public Vector2 GetSupportSpot()
     {
         return BestSupportingSpot.Position;

@@ -503,28 +503,34 @@ public class KickBall : State
         //If he can shoot
         Vector2 ShootingTarget = new Vector2();
 
-        if (PlayerScript.GetTeam().CanShoot(CallingObject.transform.position, out ShootingTarget, PlayerScript.MaxShootingForce, PlayerScript.ShootingConfidence))
+        if (PlayerScript.InShootingRange())
         {
-            //Get the Target the player is aiming at
-            Vector2 ShotTarget = PlayerScript.AddNoiseToTarget(ShootingTarget);
 
-            //Get the direction of the shot
-            Vector2 KickDir = (ShotTarget - (Vector2)PlayerScript.Ball.transform.position).normalized;
-
-            //Set a kick power based on if the player is facing the ball
-            KickPower = PlayerScript.MaxShootingForce * dot;
-
-            
-
-            //Add force to the ball
-            PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower, ShotTarget,"Shooting Towards Goal");
+            if (PlayerScript.GetTeam().CanShoot(CallingObject.transform.position, out ShootingTarget, PlayerScript.MaxShootingForce, PlayerScript.ShootingConfidence))
+            {
 
 
-            PlayerScript.ChangeState(CallingObject, Wait.Instance());
+                //Get the Target the player is aiming at
+                Vector2 ShotTarget = PlayerScript.AddNoiseToTarget(ShootingTarget);
 
-            PlayerScript.FindSupport();
+                //Get the direction of the shot
+                Vector2 KickDir = (ShotTarget - (Vector2)PlayerScript.Ball.transform.position).normalized;
 
-            return;
+                //Set a kick power based on if the player is facing the ball
+                KickPower = PlayerScript.MaxShootingForce * dot;
+
+
+
+                //Add force to the ball
+                PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower, ShotTarget, "Shooting Towards Goal");
+
+
+                PlayerScript.ChangeState(CallingObject, Wait.Instance());
+
+                PlayerScript.FindSupport();
+
+                return;
+            }
         }
 
         KickPower = PlayerScript.PassingForce * dot;
