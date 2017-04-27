@@ -85,6 +85,7 @@ public class Region : MonoBehaviour {
     private int RedScore = 0;
     private int BlueScore = 0;
 
+    public FPSTimer  FPSCounter;
 
 
     void Start ()
@@ -261,11 +262,13 @@ public class Region : MonoBehaviour {
     {
         if (BlueScore >= 5)
         {
+            FPSCounter.printFPS();
             SceneManager.LoadScene(1);
         }
 
         if (RedScore >= 5)
         {
+            FPSCounter.printFPS();
             SceneManager.LoadScene(2);
         }
     }

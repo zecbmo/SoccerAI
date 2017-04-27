@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AI.Fuzzy.Library;
 using UnityEngine;
 
+
 public class Team : MonoBehaviour
 {
 
@@ -392,6 +393,8 @@ public class Team : MonoBehaviour
 
             if (UseFuzzyLogic)
             {
+                float StartTime = TestBase.GetStartTime();
+
                 Dictionary<FuzzyVariable, double> InputValues = new Dictionary<FuzzyVariable, double>();
                 InputValues.Add(FuzzyCanShoot, ShootingScore);
                 InputValues.Add(FuzzySafePass, PassScore);
@@ -408,6 +411,10 @@ public class Team : MonoBehaviour
                     SP.Weighting = Weight;
                     BestSupportingSpot = SP;
                 }
+
+                float EndTime = TestBase.GetEndTime();
+                TestBase.AddToMeassuredTime(EndTime-StartTime);
+
 
             }
             else

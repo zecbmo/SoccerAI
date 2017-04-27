@@ -423,11 +423,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.85
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.48
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4268892072721246, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -492,7 +492,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.42
+      value: 12.7
       objectReference: {fileID: 0}
     - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -619,7 +619,7 @@ Prefab:
     - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
       propertyPath: FuzzyDebugOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
@@ -635,6 +635,46 @@ GameObject:
   m_PrefabParentObject: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d,
     type: 2}
   m_PrefabInternal: {fileID: 902167794}
+--- !u!1 &185401475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 185401477}
+  - component: {fileID: 185401476}
+  m_Layer: 0
+  m_Name: FPSTIMER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &185401476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185401475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09c89300f0d2a543a753a76c6888711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &185401477
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185401475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.39543587, y: 0.9068513, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &325555426
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +897,7 @@ MonoBehaviour:
   BlueTeamStateUI: {fileID: 106234681}
   BlueTeamScoreText: {fileID: 1641101135}
   RedTeamScoreText: {fileID: 991160371}
+  FPSCounter: {fileID: 185401476}
 --- !u!1 &386045010 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1341334283867638, guid: e59f1724c6238e64eb4f4991c08fee6d,
@@ -1436,7 +1477,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 735231353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 0, z: 0}
+  m_LocalPosition: {x: 0.03, y: 0.02, z: 0}
   m_LocalScale: {x: 0.05234201, y: 0.05234201, z: 0.05234201}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1494,11 +1535,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.81
+      value: -5.94
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.94
+      value: -1.07
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1828,11 +1869,11 @@ Prefab:
       objectReference: {fileID: 735231353}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.61
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.6
+      value: -3.67
       objectReference: {fileID: 0}
     - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
@@ -2000,7 +2041,7 @@ TextMesh:
 
     Using
 
-    FSM'
+    FSM/FUZZY'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -2053,7 +2094,7 @@ Transform:
   m_GameObject: {fileID: 916670792}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.06, y: 1.64, z: 0}
-  m_LocalScale: {x: 0.06529412, y: 0.065294184, z: 0.065294184}
+  m_LocalScale: {x: 0.05153595, y: 0.051536, z: 0.051536}
   m_Children: []
   m_Father: {fileID: 454348916}
   m_RootOrder: 2
@@ -3164,11 +3205,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.6
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.48
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3220,11 +3261,11 @@ Prefab:
       objectReference: {fileID: 1837412319}
     - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12.86
+      value: 9.51
       objectReference: {fileID: 0}
     - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.46
+      value: -4.99
       objectReference: {fileID: 0}
     - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
@@ -3677,11 +3718,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 15.87
+      value: 20.07
       objectReference: {fileID: 0}
     - target: {fileID: 4049638241301718, guid: 799eafbdc60a88148b0df9b9866f747c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.99
+      value: -6.08
       objectReference: {fileID: 0}
     - target: {fileID: 114832135354352176, guid: 799eafbdc60a88148b0df9b9866f747c,
         type: 2}
@@ -4071,7 +4112,7 @@ MonoBehaviour:
   ShootingOffsetForFindingGoodShot: 0.5
   ChancePlayersWontListenToPassRequest: 5
   Ball: {fileID: 735231353}
-  UseFuzzyLogic: 1
+  UseFuzzyLogic: 0
   DebugOn: 0
 --- !u!1 &1781368579
 GameObject:
@@ -4253,7 +4294,7 @@ Prefab:
       objectReference: {fileID: 735231353}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.72
+      value: -3.59
       objectReference: {fileID: 0}
     - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}
@@ -4272,15 +4313,15 @@ Prefab:
       objectReference: {fileID: 685242554}
     - target: {fileID: 4416072132087762, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.29
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.76
+      value: 10.68
       objectReference: {fileID: 0}
     - target: {fileID: 4858416274137978, guid: e59f1724c6238e64eb4f4991c08fee6d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.14
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 114463876889725274, guid: e59f1724c6238e64eb4f4991c08fee6d,
         type: 2}

@@ -265,17 +265,26 @@ public class Dribble : State
 
         if (dot > 0.7f) //Facing the goal
         {
-            //Dribble towards goal
-            Vector2 Target = PlayerScript.transform.position + (CallingObject.transform.right * PlayerScript.DribbleForce);
-            PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.right * PlayerScript.DribbleForce, Target, "Dribbling Towards Goal");
+            if (PlayerScript.InShootingRange())
+            {
+                Vector2 Target = (PlayerScript.OpponentsGoal.transform.position - PlayerScript.gameObject.transform.position).normalized;
+
+                PlayerScript.Ball.GetComponent<Football>().AddForce(Target * PlayerScript.TurningForce, Target, "Moving Towards Goal");
+            }
+            else
+            {
+                //Dribble towards goal
+                Vector2 Target = PlayerScript.transform.position + (CallingObject.transform.right * PlayerScript.DribbleForce);
+                PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.right * PlayerScript.DribbleForce, Target, "Dribbling Towards Goal");
+            }
         }
         else
         {
             //Kick to your prefered turn dir
             //Debug.Log("Turning With Ball");
-            Vector2 Target = PlayerScript.transform.position + (CallingObject.transform.right * PlayerScript.DribbleForce);
+            Vector2 Target = (PlayerScript.OpponentsGoal.transform.position - PlayerScript.gameObject.transform.position).normalized;
 
-            PlayerScript.Ball.GetComponent<Football>().AddForce(CallingObject.transform.up * PlayerScript.TurningForce * PlayerScript.PreferedTurnDir, Target, "Turning With Ball");
+            PlayerScript.Ball.GetComponent<Football>().AddForce(Target * PlayerScript.TurningForce , Target, "Turning With Ball");
         }
 
         PlayerScript.ChangeState(CallingObject, ChaseBall.Instance());

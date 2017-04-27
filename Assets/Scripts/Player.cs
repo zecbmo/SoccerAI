@@ -92,8 +92,8 @@ public class Player : MonoBehaviour
     {
         //Fuzzy input variables
         FuzzyDistanceFromGoal.Terms.Add(new FuzzyTerm("CloseToGoal",new TriangularMembershipFunction(-1,0,1)));
-        FuzzyDistanceFromGoal.Terms.Add(new FuzzyTerm("MediumToGoal", new TriangularMembershipFunction(0, 1, 2)));
-        FuzzyDistanceFromGoal.Terms.Add(new FuzzyTerm("FarToGoal", new TriangularMembershipFunction(1, 2, 3)));
+        FuzzyDistanceFromGoal.Terms.Add(new FuzzyTerm("MediumToGoal", new TriangularMembershipFunction(0, 2, 4)));
+        FuzzyDistanceFromGoal.Terms.Add(new FuzzyTerm("FarToGoal", new TriangularMembershipFunction(2, 4, 40)));
         FuzzySystemShoot.Input.Add(FuzzyDistanceFromGoal);
 
         FuzzyShootingConfidence.Terms.Add(new FuzzyTerm("LowConf", new TriangularMembershipFunction(0.1, 0.3, 0.5)));
@@ -462,56 +462,72 @@ public class Player : MonoBehaviour
 
     public float GetShootingForce()
     {
-        float ShotForce = 0.0f;
-
-        float Dist = Vector3.Distance(OpponentsGoal.transform.position, gameObject.transform.position);
 
 
-        Dictionary<FuzzyVariable, double> InputValues = new Dictionary<FuzzyVariable, double>();
-        InputValues.Add(FuzzyDistanceFromGoal, (double)Dist);
-        InputValues.Add(FuzzyShootingConfidence, (double)ShootingConfidence);
+        float ShotForce = MaxShootingForce;
 
-        Dictionary<FuzzyVariable, double> Result = FuzzySystemShoot.Calculate(InputValues);
-
-        ShotForce = (float)Result[FuzzyShootingForce];
-
-        if (FuzzyDebugOn)
+        if (PlayersTeam.UsingFuzzyLogic())
         {
-            Debug.Log("Distacne to goal = " + Dist + "::: Shooting Confidence = " + ShootingConfidence);
-            Debug.Log("Shot Force = " + ShotForce);
+            float StartTime = TestBase.GetStartTime(); ;
+            float Dist = Vector3.Distance(OpponentsGoal.transform.position, gameObject.transform.position);
 
+
+            Dictionary<FuzzyVariable, double> InputValues = new Dictionary<FuzzyVariable, double>();
+            InputValues.Add(FuzzyDistanceFromGoal, (double)Dist);
+            InputValues.Add(FuzzyShootingConfidence, (double)ShootingConfidence);
+
+            Dictionary<FuzzyVariable, double> Result = FuzzySystemShoot.Calculate(InputValues);
+
+            ShotForce = (float)Result[FuzzyShootingForce];
+
+            if (FuzzyDebugOn)
+            {
+                Debug.Log("Distacne to goal = " + Dist + "::: Shooting Confidence = " + ShootingConfidence);
+                Debug.Log("Shot Force = " + ShotForce);
+
+            }
+
+
+            float EndTime = TestBase.GetEndTime(); 
+            TestBase.AddToMeassuredTime(EndTime - StartTime);
         }
-        
 
         return ShotForce;
     }
 
     public float GetPassingForce(Vector3 Target)
     {
-        float PassForce = 5.0f;
+        float PassForce = PassingForce;
 
-
-        float Dist = Vector3.Distance(Target, gameObject.transform.position);
-
-        if (FuzzyDebugOn)
+        if (PlayersTeam.UsingFuzzyLogic())
         {
-            Debug.Log("Distacne to Passing player = " + Dist);        
+            float StartTime = TestBase.GetStartTime();
+
+            float Dist = Vector3.Distance(Target, gameObject.transform.position);
+
+            if (FuzzyDebugOn)
+            {
+                Debug.Log("Distacne to Passing player = " + Dist);
+            }
+
+            Dictionary<FuzzyVariable, double> InputValues = new Dictionary<FuzzyVariable, double>();
+            InputValues.Add(FuzzyDistanceToPassingPlayer, (double)Dist);
+            InputValues.Add(FuzzyPassingForceIn, (double)PassingForce);
+
+            Dictionary<FuzzyVariable, double> Result = FuzzySystemPass.Calculate(InputValues);
+
+            PassForce = (float)Result[FuzzyPassingForceOut];
+
+            if (FuzzyDebugOn)
+            {
+                Debug.Log("Shot Force = " + PassForce);
+            }
+
+
+
+            float EndTime = TestBase.GetEndTime();
+            TestBase.AddToMeassuredTime(EndTime - StartTime);
         }
-        
-        Dictionary<FuzzyVariable, double> InputValues = new Dictionary<FuzzyVariable, double>();
-        InputValues.Add(FuzzyDistanceToPassingPlayer, (double)Dist);
-        InputValues.Add(FuzzyPassingForceIn, (double)PassingForce);
-
-        Dictionary<FuzzyVariable, double> Result = FuzzySystemPass.Calculate(InputValues);
-
-        PassForce = (float)Result[FuzzyPassingForceOut];
-
-        if (FuzzyDebugOn)
-        {
-           Debug.Log("Shot Force = " + PassForce);
-        }
-
-
 
         return PassForce;
     }
