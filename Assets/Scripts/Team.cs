@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using AI.Fuzzy.Library;
 using UnityEngine;
 
 public class Team : MonoBehaviour
@@ -51,11 +52,80 @@ public class Team : MonoBehaviour
     *  Ref to the best supporting spot for the players 
     */
     SupportPosition BestSupportingSpot;// = null;
-
+    public bool UseFuzzyLogic = false;
     public bool DebugOn = false;
+
+    //Fuzzy logic system
+    MamdaniFuzzySystem FuzzySystemTeam = new MamdaniFuzzySystem();
+
+    FuzzyVariable FuzzyDistanceToAttackingPlayer = new FuzzyVariable("DistToPlayer", 0.0, 20.0);
+    FuzzyVariable FuzzyCanShoot = new FuzzyVariable("CanShoot", -1.0, 2.0);
+    FuzzyVariable FuzzySafePass = new FuzzyVariable("SafePass", -1.0, 2.0);
+    FuzzyVariable FuzzySupportingPlayer = new FuzzyVariable("SupportingPlayer", 0.0, 0.5);
+
+    public void SetUpFuzzyLogicSystem()
+    {
+        //Passing Force
+        //Fuzzy input variables
+        FuzzyDistanceToAttackingPlayer.Terms.Add(new FuzzyTerm("CloseToPlayer", new TriangularMembershipFunction(0, 1, 2)));
+        FuzzyDistanceToAttackingPlayer.Terms.Add(new FuzzyTerm("MediumToPlayer", new TriangularMembershipFunction(1, 2.5, 4)));
+        FuzzyDistanceToAttackingPlayer.Terms.Add(new FuzzyTerm("FarToPlayer", new TriangularMembershipFunction(2.5, 10, 20)));
+        FuzzySystemTeam.Input.Add(FuzzyDistanceToAttackingPlayer);
+
+
+        FuzzyCanShoot.Terms.Add(new FuzzyTerm("No", new TriangularMembershipFunction(-1, 0.0, 0.5)));
+        FuzzyCanShoot.Terms.Add(new FuzzyTerm("Yes", new TriangularMembershipFunction(0.0, 1, 2)));
+        FuzzySystemTeam.Input.Add(FuzzyCanShoot);
+
+        FuzzySafePass.Terms.Add(new FuzzyTerm("No", new TriangularMembershipFunction(-1, 0.0, 0.5)));
+        FuzzySafePass.Terms.Add(new FuzzyTerm("Yes", new TriangularMembershipFunction(0.0, 1, 2)));
+        FuzzySystemTeam.Input.Add(FuzzySafePass);
+
+        //Fuzzy output variables
+        FuzzySupportingPlayer.Terms.Add(new FuzzyTerm("No", new TriangularMembershipFunction(0.1, 0.15, 0.2)));
+        FuzzySupportingPlayer.Terms.Add(new FuzzyTerm("Maybe", new TriangularMembershipFunction(0.1, 0.2, 0.3)));
+        FuzzySupportingPlayer.Terms.Add(new FuzzyTerm("Definetly", new TriangularMembershipFunction(0.3, 0.4, 0.5)));
+        FuzzySystemTeam.Output.Add(FuzzySupportingPlayer);
+
+
+        MamdaniFuzzyRule rule1 = FuzzySystemTeam.ParseRule("if (DistToPlayer is CloseToPlayer )  and (CanShoot is No) and (SafePass is No) then SupportingPlayer is No");
+        MamdaniFuzzyRule rule2 = FuzzySystemTeam.ParseRule("if (DistToPlayer is CloseToPlayer )  and (CanShoot is Yes) and (SafePass is No) then SupportingPlayer is Maybe");
+
+        MamdaniFuzzyRule rule3 = FuzzySystemTeam.ParseRule("if (DistToPlayer is CloseToPlayer )  and (CanShoot is No) and (SafePass is Yes) then SupportingPlayer is Maybe");
+        MamdaniFuzzyRule rule4 = FuzzySystemTeam.ParseRule("if (DistToPlayer is CloseToPlayer )  and (CanShoot is Yes) and (SafePass is Yes) then SupportingPlayer is Definetly");
+
+
+        MamdaniFuzzyRule rule5 = FuzzySystemTeam.ParseRule("if (DistToPlayer is MediumToPlayer )  and (CanShoot is No) and (SafePass is No) then SupportingPlayer is No");
+        MamdaniFuzzyRule rule6 = FuzzySystemTeam.ParseRule("if (DistToPlayer is MediumToPlayer )  and (CanShoot is Yes) and (SafePass is No) then SupportingPlayer is Maybe");
+
+        MamdaniFuzzyRule rule7 = FuzzySystemTeam.ParseRule("if (DistToPlayer is MediumToPlayer )  and (CanShoot is No) and (SafePass is Yes) then SupportingPlayer is Maybe");
+        MamdaniFuzzyRule rule8 = FuzzySystemTeam.ParseRule("if (DistToPlayer is MediumToPlayer )  and (CanShoot is Yes) and (SafePass is Yes) then SupportingPlayer is Definetly");
+
+        MamdaniFuzzyRule rule9 = FuzzySystemTeam.ParseRule("if (DistToPlayer is FarToPlayer )  and (CanShoot is No) and (SafePass is No) then SupportingPlayer is No");
+        MamdaniFuzzyRule rule10 = FuzzySystemTeam.ParseRule("if (DistToPlayer is FarToPlayer )  and (CanShoot is Yes) and (SafePass is No) then SupportingPlayer is No");
+
+        MamdaniFuzzyRule rule11 = FuzzySystemTeam.ParseRule("if (DistToPlayer is FarToPlayer )  and (CanShoot is No) and (SafePass is Yes) then SupportingPlayer is Maybe");
+        MamdaniFuzzyRule rule12 = FuzzySystemTeam.ParseRule("if (DistToPlayer is FarToPlayer )  and (CanShoot is Yes) and (SafePass is Yes) then SupportingPlayer is Maybe");
+
+
+       FuzzySystemTeam.Rules.Add(rule1);
+       FuzzySystemTeam.Rules.Add(rule2);
+       FuzzySystemTeam.Rules.Add(rule3);
+       FuzzySystemTeam.Rules.Add(rule4);
+       FuzzySystemTeam.Rules.Add(rule5);
+       FuzzySystemTeam.Rules.Add(rule6);
+       FuzzySystemTeam.Rules.Add(rule7);
+       FuzzySystemTeam.Rules.Add(rule8);
+       FuzzySystemTeam.Rules.Add(rule9);
+       
+       FuzzySystemTeam.Rules.Add(rule10);
+       FuzzySystemTeam.Rules.Add(rule11);
+       FuzzySystemTeam.Rules.Add(rule12);
+    }
 
     public void Init(Region Pitch, List<GameObject> NewPlayers)
     {
+        SetUpFuzzyLogicSystem();
         Players = new List<Player>();
 
         PitchRef = Pitch;
@@ -261,7 +331,10 @@ public class Team : MonoBehaviour
         return false;
     }
 
-
+    public bool UsingFuzzyLogic()
+    {
+        return UseFuzzyLogic;
+    }
 
     public Vector2 GetSupportSpot()
     {
@@ -283,11 +356,12 @@ public class Team : MonoBehaviour
         {
             //reset the current Weighing
             SP.Weighting = PitchRef.GetDefaultWeighting();
-
+            float PassScore =0 , ShootingScore = 0, DistScore = 0;
             //Calculate the Passing Score to position
             if (IsPassSafeFromAllOpponents(ControllingPlayer.transform.position, SP.Position, SP.obj, ControllingPlayer.PassingForce))
             {
                 SP.Weighting += PitchRef.GetSafePassScore() ;
+                PassScore = PitchRef.GetSafePassScore();
             }
 
             //Determine if a goal can be scored from the posiiton
@@ -295,6 +369,7 @@ public class Team : MonoBehaviour
             if (CanShoot(SP.Position, out Outtarget, 4))
             {
                 SP.Weighting += PitchRef.GetShootingChanceScore();
+                ShootingScore = PitchRef.GetShootingChanceScore();
             }
 
             //Check to See if the supporting player is close
@@ -309,18 +384,47 @@ public class Team : MonoBehaviour
                 if (dist < OptimalDisitance)
                 {
                     SP.Weighting += (OptimalDisitance - dist)/4f;
+                    DistScore = dist;
                 }
 
            
             }
 
-            //If the current position has a better score make it so
-            if (SP.Weighting > BestScoreSoFar)
+            if (UseFuzzyLogic)
             {
-                BestScoreSoFar = SP.Weighting;
-                BestSupportingSpot = SP;
+                Dictionary<FuzzyVariable, double> InputValues = new Dictionary<FuzzyVariable, double>();
+                InputValues.Add(FuzzyCanShoot, ShootingScore);
+                InputValues.Add(FuzzySafePass, PassScore);
+                InputValues.Add(FuzzyDistanceToAttackingPlayer, Opponents.GetClosetsPlayerDistanceToGivenPoint(SP.Position));
+
+
+                Dictionary<FuzzyVariable, double> Result = FuzzySystemTeam.Calculate(InputValues);
+
+                float Weight = (float)Result[FuzzySupportingPlayer];
+
+                if (Weight > BestScoreSoFar)
+                {
+                    BestScoreSoFar = Weight;
+                    SP.Weighting = Weight;
+                    BestSupportingSpot = SP;
+                }
+
+            }
+            else
+            {
+                //If the current position has a better score make it so
+                if (SP.Weighting > BestScoreSoFar)
+                {
+                    BestScoreSoFar = SP.Weighting;
+                    BestSupportingSpot = SP;
+                }
             }
         }  
+
+
+
+
+
 
         return BestPoition;
 
@@ -477,4 +581,24 @@ public class Team : MonoBehaviour
     {
         return CurrentState;
     }
+
+
+    public float GetClosetsPlayerDistanceToGivenPoint(Vector3 Point)
+    {
+        float FinalDist = 1000000.0f;
+
+        foreach (Player Guy in Players)
+        {
+            float Dist = Vector3.Distance(Point, Guy.gameObject.transform.position);
+
+            if (Dist < FinalDist)
+            {
+                FinalDist = Dist;
+            }
+
+        }
+
+        return FinalDist;
+    }
+         
 }

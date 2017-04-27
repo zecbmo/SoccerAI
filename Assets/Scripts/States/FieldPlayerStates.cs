@@ -103,6 +103,11 @@ public class GlobalPlayerState : State
 
                     //Add force to the ball
 
+                    if (PlayerScript.GetTeam().UsingFuzzyLogic())
+                    {
+                        KickPower = PlayerScript.GetPassingForce(PassTarget);
+                    }
+
                     if (!PlayerScript.IsReadyForNextKick())
                     {
 
@@ -517,7 +522,7 @@ public class KickBall : State
                 Vector2 KickDir = (ShotTarget - (Vector2)PlayerScript.Ball.transform.position).normalized;
 
                 //Set a kick power based on if the player is facing the ball
-                KickPower = PlayerScript.MaxShootingForce * dot;
+                KickPower = PlayerScript.GetShootingForce() * dot;
 
 
 
@@ -560,6 +565,11 @@ public class KickBall : State
 
             //Get the direction of the shot
             Vector2 KickDir = (PassTarget - (Vector2)PlayerScript.Ball.transform.position).normalized;
+
+            if (PlayerScript.GetTeam().UsingFuzzyLogic())
+            {
+                KickPower = PlayerScript.GetPassingForce(PassingTarget);
+            }
 
             //Add force to the ball
             PlayerScript.Ball.GetComponent<Football>().AddForce(KickDir * KickPower, PassTarget,"Passing To Player Indepentently");
